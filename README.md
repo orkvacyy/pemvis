@@ -362,4 +362,4 @@ Relasi menggunakan **Cascading Delete** — menghapus workout otomatis menghapus
 
 ---
 
-*Project ini dibuat sebagai implementasi aplikasi desktop VB.NET dengan penerapan konsep Object-Oriented Programming.*
+*Project dibuat sebagai implementasi aplikasi desktop VB.NET dengan penerapan konsep Object-Oriented Programming.*

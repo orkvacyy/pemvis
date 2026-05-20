@@ -359,7 +359,8 @@ Module DataModule
         Try
             Using conn As MySqlConnection = GetConnection()
                 conn.Open()
-                Using cmd As New MySqlCommand("INSERT INTO users (username, password) VALUES (@u, @p)", conn)
+                Using cmd As New MySqlCommand(
+                "INSERT INTO users (username, password, role) VALUES (@u, @p, 'user')", conn)
                     cmd.Parameters.AddWithValue("@u", username)
                     cmd.Parameters.AddWithValue("@p", password)
                     cmd.ExecuteNonQuery()
@@ -367,7 +368,8 @@ Module DataModule
                 End Using
             End Using
         Catch ex As Exception
-            MessageBox.Show("Username mungkin sudah ada.", "Error")
+            MessageBox.Show("Username sudah digunakan, coba yang lain.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
