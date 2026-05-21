@@ -16,7 +16,7 @@ Public Class FormUserPopup
 
     Private Sub FormUserPopup_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If Not _isEdit Then
-            cmbRole.SelectedIndex = 1 ' Default to 'user'
+            cmbRole.SelectedIndex = 1
             lblTitle.Text = "Add New User"
         End If
     End Sub
@@ -32,7 +32,6 @@ Public Class FormUserPopup
         End If
 
         If Not Regex.IsMatch(txtUsername.Text, "[a-zA-Z0-9]") Then
-            ' Jika tidak ada huruf atau angka sama sekali (hanya simbol/kosong)
             MessageBox.Show("Error: Username harus mengandung huruf atau angka, tidak boleh hanya simbol.", "Validasi Gagal")
             Exit Sub
         End If

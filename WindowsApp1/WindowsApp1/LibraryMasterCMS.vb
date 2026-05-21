@@ -42,4 +42,8 @@ Public Class LibraryMasterCMS
     Private Sub btnDel_Click(sender As Object, e As EventArgs) Handles btnDel.Click
         RaiseEvent DeleteClicked(_execId, _execName)
     End Sub
+
+    Private Sub btnEx_Click(sender As Object, e As EventArgs) Handles btnEx.Click
+
+    End Sub
 End Class

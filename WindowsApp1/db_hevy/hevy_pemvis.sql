@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 21, 2026 at 04:25 PM
+-- Generation Time: May 21, 2026 at 06:05 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.4.21
 
@@ -40,10 +40,40 @@ CREATE TABLE `exercises` (
 --
 
 INSERT INTO `exercises` (`id`, `name`, `muscle_group`, `equipment`, `user_id`) VALUES
-(1, 'dumbbel bench press', 'Chest', 'Dumbbell', NULL),
-(2, 'tasda', 'Chest', 'None', NULL),
-(4, 'tes2', 'Shoulders', 'Machine', NULL),
-(9, 'kocakkkkk', 'Chest', 'Cables', NULL);
+(48, 'Treadmill Run', 'Cardio', 'Machine', NULL),
+(49, 'Outdoor Running', 'Cardio', 'None', NULL),
+(50, 'Cycling (Stationary)', 'Cardio', 'Machine', NULL),
+(51, 'Jump Rope', 'Cardio', 'Bodyweight', NULL),
+(52, 'Rowing Machine', 'Cardio', 'Machine', NULL),
+(53, 'Stair Climber', 'Cardio', 'Machine', NULL),
+(54, 'Elliptical Trainer', 'Cardio', 'Machine', NULL),
+(55, 'Swimming', 'Cardio', 'None', NULL),
+(56, 'Barbell Bench Press', 'Chest', 'Barbell', NULL),
+(57, 'Incline Dumbbell Press', 'Chest', 'Dumbbell', NULL),
+(58, 'Push Up', 'Chest', 'Bodyweight', NULL),
+(59, 'Cable Crossover', 'Chest', 'Cable', NULL),
+(60, 'Pull Up', 'Back', 'Bodyweight', NULL),
+(61, 'Lat Pulldown', 'Back', 'Cable', NULL),
+(62, 'Barbell Row', 'Back', 'Barbell', NULL),
+(63, 'Deadlift', 'Back', 'Barbell', NULL),
+(64, 'Barbell Squat', 'Legs', 'Barbell', NULL),
+(65, 'Leg Press', 'Legs', 'Machine', NULL),
+(66, 'Romanian Deadlift', 'Legs', 'Barbell', NULL),
+(67, 'Calf Raise', 'Legs', 'Bodyweight', NULL),
+(68, 'Lunges', 'Legs', 'Dumbbell', NULL),
+(69, 'Dumbbell Bicep Curl', 'Arms', 'Dumbbell', NULL),
+(70, 'Hammer Curl', 'Arms', 'Dumbbell', NULL),
+(71, 'Tricep Pushdown', 'Arms', 'Cable', NULL),
+(72, 'Overhead Tricep Extension', 'Arms', 'Dumbbell', NULL),
+(73, 'Overhead Press', 'Shoulders', 'Barbell', NULL),
+(74, 'Lateral Raise', 'Shoulders', 'Dumbbell', NULL),
+(75, 'Front Raise', 'Shoulders', 'Dumbbell', NULL),
+(76, 'Plank', 'Core', 'Bodyweight', NULL),
+(77, 'Crunch', 'Core', 'Bodyweight', NULL),
+(78, 'Russian Twist', 'Core', 'Dumbbell', NULL),
+(79, 'Leg Raise', 'Core', 'Bodyweight', NULL),
+(80, 'Burpees', 'Full Body', 'Bodyweight', NULL),
+(81, 'Kettlebell Swing', 'Full Body', 'Kettlebell', NULL);
 
 -- --------------------------------------------------------
 
@@ -67,9 +97,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `role`, `created_at`) VALUES
 (1, 'admin', '1234', 'admin', '2026-05-20 21:22:37'),
 (2, 'user', '2321321', 'user', '2026-05-20 21:57:12'),
 (3, 'aku', 'fanny123', 'user', '2026-05-20 22:21:36'),
-(5, 'sifwah', 'fanny123', 'user', '2026-05-21 23:29:04'),
-(6, '@#@##@#@', 'dsadsaedas', 'user', '2026-05-22 00:05:23'),
-(7, 'jawa', '123456', 'user', '2026-05-22 00:23:13');
+(5, 'sifwah', 'fanny123', 'user', '2026-05-21 23:29:04');
 
 -- --------------------------------------------------------
 
@@ -94,10 +122,8 @@ INSERT INTO `workouts` (`id`, `name`, `date`, `notes`, `user_id`, `status`) VALU
 (12, 'New Workout', '2026-05-20 15:10:28', '', NULL, 'ongoing'),
 (13, 'New Workout', '2026-05-20 15:11:05', '', NULL, 'ongoing'),
 (14, 'New Workout', '2026-05-20 21:40:52', '', NULL, 'ongoing'),
-(16, 'New Workout', '2026-05-21 14:18:19', '', 1, 'ongoing'),
 (19, 'New Workout', '2026-05-21 23:35:55', '', 5, 'ongoing'),
-(20, 'woktou senin pagi hari', '2026-05-21 23:36:35', '', 5, 'ongoing'),
-(25, 'New Workout', '2026-05-22 00:24:12', '', 7, 'ongoing');
+(30, 'New Workout', '2026-05-22 01:02:39', '', 5, 'ongoing');
 
 -- --------------------------------------------------------
 
@@ -111,15 +137,6 @@ CREATE TABLE `workout_exercises` (
   `exercise_id` int NOT NULL,
   `order_index` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `workout_exercises`
---
-
-INSERT INTO `workout_exercises` (`id`, `workout_id`, `exercise_id`, `order_index`) VALUES
-(5, 19, 1, 1),
-(6, 20, 9, 1),
-(10, 25, 9, 1);
 
 -- --------------------------------------------------------
 
@@ -135,15 +152,6 @@ CREATE TABLE `workout_sets` (
   `reps` int NOT NULL DEFAULT '0',
   `completed` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `workout_sets`
---
-
-INSERT INTO `workout_sets` (`id`, `workout_exercise_id`, `set_number`, `weight`, `reps`, `completed`) VALUES
-(10, 5, 1, 321.00, 0, 1),
-(11, 5, 2, 232.00, 10, 0),
-(12, 6, 1, 231.00, 210, 1);
 
 --
 -- Indexes for dumped tables
@@ -193,31 +201,31 @@ ALTER TABLE `workout_sets`
 -- AUTO_INCREMENT for table `exercises`
 --
 ALTER TABLE `exercises`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `workouts`
 --
 ALTER TABLE `workouts`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `workout_exercises`
 --
 ALTER TABLE `workout_exercises`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `workout_sets`
 --
 ALTER TABLE `workout_sets`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables

@@ -29,8 +29,6 @@ Public Class SetRowCMS
         Dim r As Integer = 0
         Dim txtW As String = txtWeight.Text.Trim()
         Dim txtR As String = txtReps.Text.Trim()
-
-        ' 1. Validasi Weight / Distance
         If txtW <> "" Then
             Dim isValidWeight As Boolean = Decimal.TryParse(txtW.Replace(",", "."), Globalization.NumberStyles.Any, Globalization.CultureInfo.InvariantCulture, w)
             If Not isValidWeight Then
@@ -42,8 +40,6 @@ Public Class SetRowCMS
                 Return
             End If
         End If
-
-        ' 2. Validasi Reps / Duration
         If txtR <> "" Then
             If IsCardio Then
                 If Not DataModule.IsValidDuration(txtR) Then

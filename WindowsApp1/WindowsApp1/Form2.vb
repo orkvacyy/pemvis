@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Text.RegularExpressions
+Imports System.Windows.Forms
 
 Public Class Form2
     Public Property editTemp As Boolean = False
@@ -14,12 +15,17 @@ Public Class Form2
         Me.Text = "Edit Custom Exercise"
         lblTitle.Text = "Edit Custom Exercise"
     End Sub
+
+
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         If String.IsNullOrWhiteSpace(txtExName.Text) Then
             MessageBox.Show("Please enter an exercise name.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
         End If
-
+        If Not Regex.IsMatch(txtExName.Text, "[a-zA-Z0-9]") Then
+            MessageBox.Show("Error: Username harus mengandung huruf atau angka, tidak boleh hanya simbol.", "Validasi Gagal")
+            Exit Sub
+        End If
         Dim success As Boolean = False
         If editTemp Then
             success = DataModule.editExec(idExecSekarang, txtExName.Text, cmbMuscle.Text, cmbEq.Text)

@@ -138,13 +138,12 @@ Public Class Form3
         Dim startX As Integer = 60
         Dim startY As Integer = 60
         Dim offset As Integer = 0
-        'Background'    
+
         Dim pageWidth As Integer = e.PageBounds.Width - 120
         Dim colorBackground As Color = Color.FromArgb(18, 18, 18)
         Dim brushBackground As New SolidBrush(colorBackground)
         g.FillRectangle(brushBackground, e.PageBounds)
 
-        ' Font & Warna
         Dim fontTitle As New Font("Segoe UI", 16, FontStyle.Bold)
         Dim fontHeader As New Font("Segoe UI", 11, FontStyle.Bold)
         Dim fontSub As New Font("Segoe UI", 9, FontStyle.Regular)
@@ -242,6 +241,16 @@ Public Class Form3
         Next
 
         e.HasMorePages = False
+    End Sub
+
+    Private Sub Form3_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Try
+            Dim dt As DataTable = DataModule.getWorkoutExercises(_workoutId)
+            If dt IsNot Nothing AndAlso dt.Rows.Count = 0 Then
+                DataModule.delWorkout(_workoutId)
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 

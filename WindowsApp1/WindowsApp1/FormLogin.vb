@@ -4,7 +4,6 @@ Imports System.Windows.Forms
 Public Class FormLogin
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
-        ' Validasi input kosong
         If String.IsNullOrWhiteSpace(txtUsername.Text) OrElse String.IsNullOrWhiteSpace(txtPassword.Text) Then
             MessageBox.Show("Username dan Password tidak boleh kosong!", "Peringatan",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -12,7 +11,7 @@ Public Class FormLogin
         End If
 
         If Not Regex.IsMatch(txtUsername.Text, "[a-zA-Z0-9]") Then
-            ' Jika tidak ada huruf atau angka sama sekali (hanya simbol/kosong)
+
             MessageBox.Show("Error: Username harus mengandung huruf atau angka, tidak boleh hanya simbol.", "Validasi Gagal")
             Exit Sub
         End If
@@ -31,7 +30,7 @@ Public Class FormLogin
     End Sub
 
     Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
-        ' Buka FormRegister, bukan langsung register
+
         Dim regForm As New FormRegister()
         Me.Hide()
         regForm.ShowDialog()
