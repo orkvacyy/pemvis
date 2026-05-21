@@ -4,13 +4,21 @@ Imports Guna.UI2.WinForms
 Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Setup flpWorkouts (panel kiri)
+        ' Tampilkan tombol sesuai role
+        If SessionModule.CurrentRole = "admin" Then
+            btnAdmin.Visible = True
+            btnWorkout.Visible = False
+        Else
+            btnAdmin.Visible = False
+            btnWorkout.Visible = True
+        End If
+
+        ' Setup scroll
         flpWorkouts.HorizontalScroll.Maximum = 0
         flpWorkouts.AutoScroll = False
         flpWorkouts.VerticalScroll.Visible = False
         flpWorkouts.AutoScroll = True
 
-        ' Setup flpLib (panel kanan)
         flpLib.HorizontalScroll.Maximum = 0
         flpLib.AutoScroll = False
         flpLib.VerticalScroll.Visible = False
