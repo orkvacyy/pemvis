@@ -54,10 +54,10 @@ Partial Class ExerciseCardCMS
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74.0!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(450, 124)
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 91.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(600, 153)
         Me.TableLayoutPanel1.TabIndex = 0
         '
         'pnlHeader
@@ -74,7 +74,7 @@ Partial Class ExerciseCardCMS
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
         Me.pnlHeader.Margin = New System.Windows.Forms.Padding(0)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(450, 74)
+        Me.pnlHeader.Size = New System.Drawing.Size(600, 91)
         Me.pnlHeader.TabIndex = 0
         '
         'Label4
@@ -82,9 +82,10 @@ Partial Class ExerciseCardCMS
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Segoe UI", 8.5!)
         Me.Label4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(110, Byte), Integer), CType(CType(110, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label4.Location = New System.Drawing.Point(262, 53)
+        Me.Label4.Location = New System.Drawing.Point(349, 65)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(35, 15)
+        Me.Label4.Size = New System.Drawing.Size(45, 20)
         Me.Label4.TabIndex = 7
         Me.Label4.Text = "Done"
         '
@@ -93,9 +94,10 @@ Partial Class ExerciseCardCMS
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 8.5!)
         Me.Label3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(110, Byte), Integer), CType(CType(110, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label3.Location = New System.Drawing.Point(180, 53)
+        Me.Label3.Location = New System.Drawing.Point(240, 65)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(32, 15)
+        Me.Label3.Size = New System.Drawing.Size(41, 20)
         Me.Label3.TabIndex = 6
         Me.Label3.Text = "Reps"
         '
@@ -104,9 +106,10 @@ Partial Class ExerciseCardCMS
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.5!)
         Me.Label2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(110, Byte), Integer), CType(CType(110, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label2.Location = New System.Drawing.Point(60, 53)
+        Me.Label2.Location = New System.Drawing.Point(80, 65)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(69, 15)
+        Me.Label2.Size = New System.Drawing.Size(86, 20)
         Me.Label2.TabIndex = 5
         Me.Label2.Text = "Weight (kg)"
         '
@@ -115,9 +118,10 @@ Partial Class ExerciseCardCMS
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 8.5!)
         Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(110, Byte), Integer), CType(CType(110, Byte), Integer), CType(CType(110, Byte), Integer))
-        Me.Label1.Location = New System.Drawing.Point(14, 53)
+        Me.Label1.Location = New System.Drawing.Point(19, 65)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(23, 15)
+        Me.Label1.Size = New System.Drawing.Size(30, 20)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Set"
         '
@@ -126,9 +130,10 @@ Partial Class ExerciseCardCMS
         Me.lblDivider.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDivider.BackColor = System.Drawing.Color.FromArgb(CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer), CType(CType(48, Byte), Integer))
-        Me.lblDivider.Location = New System.Drawing.Point(0, 45)
+        Me.lblDivider.Location = New System.Drawing.Point(0, 55)
+        Me.lblDivider.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblDivider.Name = "lblDivider"
-        Me.lblDivider.Size = New System.Drawing.Size(450, 1)
+        Me.lblDivider.Size = New System.Drawing.Size(600, 1)
         Me.lblDivider.TabIndex = 3
         '
         'btnRemove
@@ -138,9 +143,10 @@ Partial Class ExerciseCardCMS
         Me.btnRemove.FillColor = System.Drawing.Color.Transparent
         Me.btnRemove.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.btnRemove.ForeColor = System.Drawing.Color.FromArgb(CType(CType(120, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(120, Byte), Integer))
-        Me.btnRemove.Location = New System.Drawing.Point(408, 9)
+        Me.btnRemove.Location = New System.Drawing.Point(354, 7)
+        Me.btnRemove.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnRemove.Name = "btnRemove"
-        Me.btnRemove.Size = New System.Drawing.Size(30, 28)
+        Me.btnRemove.Size = New System.Drawing.Size(40, 34)
         Me.btnRemove.TabIndex = 2
         Me.btnRemove.Text = "✕"
         '
@@ -149,9 +155,10 @@ Partial Class ExerciseCardCMS
         Me.lblMuscle.AutoSize = True
         Me.lblMuscle.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.lblMuscle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(130, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(130, Byte), Integer))
-        Me.lblMuscle.Location = New System.Drawing.Point(120, 15)
+        Me.lblMuscle.Location = New System.Drawing.Point(240, 18)
+        Me.lblMuscle.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblMuscle.Name = "lblMuscle"
-        Me.lblMuscle.Size = New System.Drawing.Size(46, 15)
+        Me.lblMuscle.Size = New System.Drawing.Size(55, 20)
         Me.lblMuscle.TabIndex = 1
         Me.lblMuscle.Text = "Muscle"
         '
@@ -160,9 +167,10 @@ Partial Class ExerciseCardCMS
         Me.lblName.AutoSize = True
         Me.lblName.Font = New System.Drawing.Font("Segoe UI", 10.5!, System.Drawing.FontStyle.Bold)
         Me.lblName.ForeColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(246, Byte), Integer))
-        Me.lblName.Location = New System.Drawing.Point(14, 13)
+        Me.lblName.Location = New System.Drawing.Point(19, 16)
+        Me.lblName.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(107, 19)
+        Me.lblName.Size = New System.Drawing.Size(136, 25)
         Me.lblName.TabIndex = 0
         Me.lblName.Text = "Exercise Name"
         '
@@ -172,10 +180,10 @@ Partial Class ExerciseCardCMS
         Me.flpSets.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.flpSets.Dock = System.Windows.Forms.DockStyle.Fill
         Me.flpSets.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.flpSets.Location = New System.Drawing.Point(0, 74)
+        Me.flpSets.Location = New System.Drawing.Point(0, 91)
         Me.flpSets.Margin = New System.Windows.Forms.Padding(0)
         Me.flpSets.Name = "flpSets"
-        Me.flpSets.Size = New System.Drawing.Size(450, 1)
+        Me.flpSets.Size = New System.Drawing.Size(600, 1)
         Me.flpSets.TabIndex = 1
         Me.flpSets.WrapContents = False
         '
@@ -183,10 +191,10 @@ Partial Class ExerciseCardCMS
         '
         Me.pnlFooter.Controls.Add(Me.btnAddSet)
         Me.pnlFooter.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlFooter.Location = New System.Drawing.Point(0, 74)
+        Me.pnlFooter.Location = New System.Drawing.Point(0, 91)
         Me.pnlFooter.Margin = New System.Windows.Forms.Padding(0)
         Me.pnlFooter.Name = "pnlFooter"
-        Me.pnlFooter.Size = New System.Drawing.Size(450, 50)
+        Me.pnlFooter.Size = New System.Drawing.Size(600, 62)
         Me.pnlFooter.TabIndex = 2
         '
         'btnAddSet
@@ -195,22 +203,24 @@ Partial Class ExerciseCardCMS
         Me.btnAddSet.FillColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(45, Byte), Integer))
         Me.btnAddSet.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnAddSet.ForeColor = System.Drawing.Color.White
-        Me.btnAddSet.Location = New System.Drawing.Point(14, 8)
+        Me.btnAddSet.Location = New System.Drawing.Point(19, 10)
+        Me.btnAddSet.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnAddSet.Name = "btnAddSet"
-        Me.btnAddSet.Size = New System.Drawing.Size(110, 32)
+        Me.btnAddSet.Size = New System.Drawing.Size(147, 39)
         Me.btnAddSet.TabIndex = 0
         Me.btnAddSet.Text = "+ Add Set"
         '
         'ExerciseCardCMS
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.Controls.Add(Me.TableLayoutPanel1)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "ExerciseCardCMS"
-        Me.Size = New System.Drawing.Size(450, 124)
+        Me.Size = New System.Drawing.Size(600, 153)
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
         Me.pnlHeader.ResumeLayout(False)

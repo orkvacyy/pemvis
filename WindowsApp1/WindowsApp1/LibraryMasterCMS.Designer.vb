@@ -39,7 +39,7 @@ Partial Class LibraryMasterCMS
         Me.btnEx.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
         Me.btnEx.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
         Me.btnEx.FillColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(36, Byte), Integer), CType(CType(36, Byte), Integer))
-        Me.btnEx.Font = New System.Drawing.Font("Segoe UI", 9.5!)
+        Me.btnEx.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnEx.ForeColor = System.Drawing.Color.White
         Me.btnEx.Location = New System.Drawing.Point(0, 3)
         Me.btnEx.Name = "btnEx"
