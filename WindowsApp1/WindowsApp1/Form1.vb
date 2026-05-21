@@ -6,7 +6,6 @@ Public Class Form1
     Private IsShowingUsers As Boolean = False
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Setup scroll
         flpWorkouts.HorizontalScroll.Maximum = 0
         flpWorkouts.AutoScroll = False
         flpWorkouts.VerticalScroll.Visible = False
@@ -17,12 +16,11 @@ Public Class Form1
         flpLib.VerticalScroll.Visible = False
         flpLib.AutoScroll = True
 
-        ' Tampilkan tombol & konten sesuai role
         If SessionModule.CurrentRole = "admin" Then
             btnAdmin.Visible = True
             btnWorkout.Visible = True
             btnAdmin.Checked = True
-            
+
             IsShowingUsers = True
             lblTitle.Text = "User Management"
             btnNewWorkout.Text = "+ Add User"
@@ -40,8 +38,6 @@ Public Class Form1
 
         TampilLibrary()
     End Sub
-
-    ' ── WORKOUT (Panel Kiri) ─────────────────────────────────
 
     Public Sub TampilWorkouts()
         flpWorkouts.Controls.Clear()
@@ -91,26 +87,31 @@ Public Class Form1
     End Sub
 
     Private Sub btnNewWorkout_Click(sender As Object, e As EventArgs) Handles btnNewWorkout.Click
-        If IsShowingUsers Then
-            Dim popup As New FormUserPopup()
-            If popup.ShowDialog() = DialogResult.OK Then
-                TampilUsers()
+        btnNewWorkout.Enabled = False
+        Try
+            If IsShowingUsers Then
+                Dim popup As New FormUserPopup()
+                If popup.ShowDialog() = DialogResult.OK Then
+                    TampilUsers()
+                End If
+            Else
+                Dim newId As Integer = DataModule.addWorkout("New Workout", "")
+                If newId > 0 Then
+                    Dim f3 As New Form3()
+                    f3.InitWorkout(newId)
+                    f3.ShowDialog()
+                    TampilWorkouts()
+                End If
             End If
-        Else
-            Dim newId As Integer = DataModule.addWorkout("New Workout", "")
-            If newId > 0 Then
-                Dim f3 As New Form3()
-                f3.InitWorkout(newId)
-                f3.ShowDialog()
-                TampilWorkouts()
-            End If
-        End If
+        Finally
+            btnNewWorkout.Enabled = True
+        End Try
     End Sub
 
     Private Sub flpWorkouts_SizeChanged(sender As Object, e As EventArgs) Handles flpWorkouts.SizeChanged
         flpWorkouts.SuspendLayout()
         For Each ctrl As Control In flpWorkouts.Controls
-            ctrl.Width = flpWorkouts.ClientSize.Width - 15
+            ctrl.Width = flpWorkouts.ClientSize.Width - 50
         Next
         flpWorkouts.ResumeLayout()
     End Sub
@@ -144,7 +145,6 @@ Public Class Form1
             End If
         Next
 
-        ' 1. Render Global/System Exercises
         If globalRows.Count > 0 Then
             Dim lblDefaultHeader As New Label() With {
                 .Text = "SYSTEM EXERCISES",
@@ -165,8 +165,6 @@ Public Class Form1
                 flpLib.Controls.Add(item)
             Next
         End If
-
-        ' 2. Render Custom Exercises
         If customRows.Count > 0 Then
             Dim lblCustomHeader As New Label() With {
                 .Text = "USER-CREATED EXERCISES",
@@ -217,8 +215,6 @@ Public Class Form1
         flpLib.ResumeLayout()
     End Sub
 
-    ' ── SIDEBAR ──────────────────────────────────────────────
-
     Private Sub btnWorkout_Click(sender As Object, e As EventArgs) Handles btnWorkout.Click
         IsShowingUsers = False
         lblTitle.Text = "Workout"
@@ -257,7 +253,6 @@ Public Class Form1
             Dim role As String = row("role").ToString()
             Dim createdAt As DateTime = CDate(row("created_at"))
 
-            ' Buat container card
             Dim card As New Guna2Panel() With {
                 .Height = 60,
                 .Width = flpWorkouts.ClientSize.Width - 15,
@@ -266,7 +261,6 @@ Public Class Form1
                 .Margin = New Padding(0, 0, 0, 10)
             }
 
-            ' Label Username & Role
             Dim lblName As New Label() With {
                 .Text = $"{username} ({role.ToUpper()})",
                 .ForeColor = Drawing.Color.White,
@@ -277,7 +271,6 @@ Public Class Form1
             }
             card.Controls.Add(lblName)
 
-            ' Label Meta (Created At)
             Dim lblMeta As New Label() With {
                 .Text = $"ID: {uid}  •  Registered: {createdAt:dd MMM yyyy HH:mm}  •  Password: {password}",
                 .ForeColor = Drawing.Color.FromArgb(150, 150, 150),
@@ -288,7 +281,6 @@ Public Class Form1
             }
             card.Controls.Add(lblMeta)
 
-            ' Tombol Edit
             Dim btnEditUser As New Guna2Button() With {
                 .Width = 36,
                 .Height = 36,
@@ -310,7 +302,6 @@ Public Class Form1
                                          End Sub
             card.Controls.Add(btnEditUser)
 
-            ' Tombol Hapus (admin tidak bisa menghapus dirinya sendiri)
             Dim btnDelUser As New Guna2Button() With {
                 .Width = 36,
                 .Height = 36,
@@ -324,7 +315,6 @@ Public Class Form1
                 .Cursor = Cursors.Hand
             }
 
-            ' Menonaktifkan jika akun yang sedang login
             If uid = SessionModule.CurrentUserId Then
                 btnDelUser.Enabled = False
                 btnEditUser.Enabled = False

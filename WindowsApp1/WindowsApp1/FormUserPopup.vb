@@ -1,3 +1,4 @@
+Imports System.Text.RegularExpressions
 Imports System.Windows.Forms
 
 Public Class FormUserPopup
@@ -30,6 +31,11 @@ Public Class FormUserPopup
             Return
         End If
 
+        If Not Regex.IsMatch(txtUsername.Text, "[a-zA-Z0-9]") Then
+            ' Jika tidak ada huruf atau angka sama sekali (hanya simbol/kosong)
+            MessageBox.Show("Error: Username harus mengandung huruf atau angka, tidak boleh hanya simbol.", "Validasi Gagal")
+            Exit Sub
+        End If
         If username.Length < 3 Then
             MessageBox.Show("Username minimal 3 karakter!", "Validasi", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return

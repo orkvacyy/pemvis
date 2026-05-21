@@ -147,18 +147,17 @@ Partial Class Form1
         '
         'flpWorkouts
         '
+        Me.flpWorkouts.AccessibleRole = System.Windows.Forms.AccessibleRole.None
         Me.flpWorkouts.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.flpWorkouts.AutoScroll = True
-        Me.flpWorkouts.AutoSize = True
         Me.flpWorkouts.BackColor = System.Drawing.Color.Transparent
         Me.flpWorkouts.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.flpWorkouts.Location = New System.Drawing.Point(45, 112)
         Me.flpWorkouts.Name = "flpWorkouts"
         Me.flpWorkouts.Size = New System.Drawing.Size(985, 616)
         Me.flpWorkouts.TabIndex = 4
-        Me.flpWorkouts.WrapContents = False
         '
         'btnNewWorkout
         '
@@ -258,6 +257,7 @@ Partial Class Form1
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Hevy"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.pnlSidebar.ResumeLayout(False)
         Me.pnlLogo.ResumeLayout(False)
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
