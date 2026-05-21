@@ -33,10 +33,10 @@ Partial Class WorkoutCMS
         Me.lblName.AutoSize = True
         Me.lblName.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
         Me.lblName.ForeColor = System.Drawing.Color.White
-        Me.lblName.Location = New System.Drawing.Point(32, 23)
-        Me.lblName.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
+        Me.lblName.Location = New System.Drawing.Point(21, 15)
+        Me.lblName.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(233, 41)
+        Me.lblName.Size = New System.Drawing.Size(149, 25)
         Me.lblName.TabIndex = 0
         Me.lblName.Text = "Workout Name"
         '
@@ -45,10 +45,10 @@ Partial Class WorkoutCMS
         Me.lblMeta.AutoSize = True
         Me.lblMeta.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.lblMeta.ForeColor = System.Drawing.Color.FromArgb(CType(CType(140, Byte), Integer), CType(CType(140, Byte), Integer), CType(CType(140, Byte), Integer))
-        Me.lblMeta.Location = New System.Drawing.Point(32, 77)
-        Me.lblMeta.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
+        Me.lblMeta.Location = New System.Drawing.Point(21, 49)
+        Me.lblMeta.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblMeta.Name = "lblMeta"
-        Me.lblMeta.Size = New System.Drawing.Size(407, 32)
+        Me.lblMeta.Size = New System.Drawing.Size(247, 20)
         Me.lblMeta.TabIndex = 1
         Me.lblMeta.Text = "Mon, 01 Jan 2026 • 0 exercise • 0 set"
         '
@@ -63,10 +63,10 @@ Partial Class WorkoutCMS
         Me.btnOpen.FillColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(246, Byte), Integer))
         Me.btnOpen.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.btnOpen.ForeColor = System.Drawing.Color.White
-        Me.btnOpen.Location = New System.Drawing.Point(460, 38)
-        Me.btnOpen.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.btnOpen.Location = New System.Drawing.Point(307, 24)
+        Me.btnOpen.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnOpen.Name = "btnOpen"
-        Me.btnOpen.Size = New System.Drawing.Size(140, 62)
+        Me.btnOpen.Size = New System.Drawing.Size(93, 40)
         Me.btnOpen.TabIndex = 2
         Me.btnOpen.Text = "Open"
         '
@@ -81,16 +81,16 @@ Partial Class WorkoutCMS
         Me.btnDel.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.btnDel.Font = New System.Drawing.Font("Segoe UI", 11.0!)
         Me.btnDel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.btnDel.Location = New System.Drawing.Point(610, 38)
-        Me.btnDel.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.btnDel.Location = New System.Drawing.Point(407, 24)
+        Me.btnDel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnDel.Name = "btnDel"
-        Me.btnDel.Size = New System.Drawing.Size(76, 62)
+        Me.btnDel.Size = New System.Drawing.Size(51, 40)
         Me.btnDel.TabIndex = 3
         Me.btnDel.Text = "🗑"
         '
         'WorkoutCMS
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.Controls.Add(Me.btnDel)
@@ -98,9 +98,9 @@ Partial Class WorkoutCMS
         Me.Controls.Add(Me.lblMeta)
         Me.Controls.Add(Me.lblName)
         Me.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "WorkoutCMS"
-        Me.Size = New System.Drawing.Size(720, 142)
+        Me.Size = New System.Drawing.Size(480, 91)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

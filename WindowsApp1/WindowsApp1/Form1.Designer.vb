@@ -20,6 +20,7 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.pnlSidebar = New Guna.UI2.WinForms.Guna2Panel()
+        Me.btnAdmin = New Guna.UI2.WinForms.Guna2Button()
         Me.btnWorkout = New Guna.UI2.WinForms.Guna2Button()
         Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlLogo = New Guna.UI2.WinForms.Guna2Panel()
@@ -33,7 +34,6 @@ Partial Class Form1
         Me.btnCustomExercise = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlLibrary = New Guna.UI2.WinForms.Guna2Panel()
         Me.flpLib = New System.Windows.Forms.FlowLayoutPanel()
-        Me.btnAdmin = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlSidebar.SuspendLayout()
         Me.pnlLogo.SuspendLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,6 +55,26 @@ Partial Class Form1
         Me.pnlSidebar.Name = "pnlSidebar"
         Me.pnlSidebar.Size = New System.Drawing.Size(220, 766)
         Me.pnlSidebar.TabIndex = 0
+        '
+        'btnAdmin
+        '
+        Me.btnAdmin.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton
+        Me.btnAdmin.Checked = True
+        Me.btnAdmin.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(246, Byte), Integer))
+        Me.btnAdmin.CheckedState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(246, Byte), Integer))
+        Me.btnAdmin.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnAdmin.FillColor = System.Drawing.Color.Transparent
+        Me.btnAdmin.Font = New System.Drawing.Font("Malgun Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAdmin.ForeColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(175, Byte), Integer))
+        Me.btnAdmin.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.btnAdmin.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.btnAdmin.Location = New System.Drawing.Point(0, 130)
+        Me.btnAdmin.Name = "btnAdmin"
+        Me.btnAdmin.Size = New System.Drawing.Size(220, 50)
+        Me.btnAdmin.TabIndex = 5
+        Me.btnAdmin.Text = "  Admin"
+        Me.btnAdmin.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.btnAdmin.TextOffset = New System.Drawing.Point(20, 0)
         '
         'btnWorkout
         '
@@ -131,6 +151,7 @@ Partial Class Form1
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.flpWorkouts.AutoScroll = True
+        Me.flpWorkouts.AutoSize = True
         Me.flpWorkouts.BackColor = System.Drawing.Color.Transparent
         Me.flpWorkouts.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.flpWorkouts.Location = New System.Drawing.Point(45, 112)
@@ -222,26 +243,6 @@ Partial Class Form1
         Me.flpLib.Size = New System.Drawing.Size(250, 641)
         Me.flpLib.TabIndex = 3
         Me.flpLib.WrapContents = False
-        '
-        'btnAdmin
-        '
-        Me.btnAdmin.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton
-        Me.btnAdmin.Checked = True
-        Me.btnAdmin.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(246, Byte), Integer))
-        Me.btnAdmin.CheckedState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(246, Byte), Integer))
-        Me.btnAdmin.Dock = System.Windows.Forms.DockStyle.Top
-        Me.btnAdmin.FillColor = System.Drawing.Color.Transparent
-        Me.btnAdmin.Font = New System.Drawing.Font("Malgun Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAdmin.ForeColor = System.Drawing.Color.FromArgb(CType(CType(156, Byte), Integer), CType(CType(163, Byte), Integer), CType(CType(175, Byte), Integer))
-        Me.btnAdmin.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.btnAdmin.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.btnAdmin.Location = New System.Drawing.Point(0, 130)
-        Me.btnAdmin.Name = "btnAdmin"
-        Me.btnAdmin.Size = New System.Drawing.Size(220, 50)
-        Me.btnAdmin.TabIndex = 5
-        Me.btnAdmin.Text = "  Admin"
-        Me.btnAdmin.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.btnAdmin.TextOffset = New System.Drawing.Point(20, 0)
         '
         'Form1
         '

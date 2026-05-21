@@ -115,7 +115,6 @@ Public Class Form1
         flpWorkouts.ResumeLayout()
     End Sub
 
-    ' ── LIBRARY (Panel Kanan) ────────────────────────────────
 
     Public Sub TampilLibrary()
         flpLib.Controls.Clear()
@@ -352,9 +351,11 @@ Public Class Form1
         Me.Close()
     End Sub
 
-    ' ── PAINT (kosong, biarkan saja) ─────────────────────────
 
     Private Sub pnlMain_Paint(sender As Object, e As PaintEventArgs) Handles pnlMain.Paint
     End Sub
 
+    Private Sub flpWorkouts_Paint(sender As Object, e As PaintEventArgs) Handles flpWorkouts.Paint
+
+    End Sub
 End Class

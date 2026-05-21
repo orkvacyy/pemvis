@@ -24,4 +24,8 @@
     Private Sub btnDel_Click(sender As Object, e As EventArgs) Handles btnDel.Click
         RaiseEvent DeleteClicked(_workoutId, _workoutName)
     End Sub
+
+    Private Sub WorkoutCMS_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

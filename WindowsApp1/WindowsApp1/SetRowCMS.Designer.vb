@@ -33,9 +33,10 @@ Partial Class SetRowCMS
         '
         Me.lblNum.Font = New System.Drawing.Font("Segoe UI", 9.5!)
         Me.lblNum.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer))
-        Me.lblNum.Location = New System.Drawing.Point(14, 10)
+        Me.lblNum.Location = New System.Drawing.Point(19, 12)
+        Me.lblNum.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblNum.Name = "lblNum"
-        Me.lblNum.Size = New System.Drawing.Size(36, 22)
+        Me.lblNum.Size = New System.Drawing.Size(48, 27)
         Me.lblNum.TabIndex = 0
         Me.lblNum.Text = "1"
         Me.lblNum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -48,10 +49,12 @@ Partial Class SetRowCMS
         Me.txtWeight.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.txtWeight.Font = New System.Drawing.Font("Segoe UI", 9.5!)
         Me.txtWeight.ForeColor = System.Drawing.Color.White
-        Me.txtWeight.Location = New System.Drawing.Point(60, 6)
+        Me.txtWeight.Location = New System.Drawing.Point(80, 7)
+        Me.txtWeight.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtWeight.Name = "txtWeight"
         Me.txtWeight.PlaceholderText = "0"
-        Me.txtWeight.Size = New System.Drawing.Size(100, 30)
+        Me.txtWeight.SelectedText = ""
+        Me.txtWeight.Size = New System.Drawing.Size(133, 37)
         Me.txtWeight.TabIndex = 1
         '
         'txtReps
@@ -62,18 +65,21 @@ Partial Class SetRowCMS
         Me.txtReps.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.txtReps.Font = New System.Drawing.Font("Segoe UI", 9.5!)
         Me.txtReps.ForeColor = System.Drawing.Color.White
-        Me.txtReps.Location = New System.Drawing.Point(180, 6)
+        Me.txtReps.Location = New System.Drawing.Point(240, 7)
+        Me.txtReps.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtReps.Name = "txtReps"
         Me.txtReps.PlaceholderText = "0"
-        Me.txtReps.Size = New System.Drawing.Size(64, 30)
+        Me.txtReps.SelectedText = ""
+        Me.txtReps.Size = New System.Drawing.Size(85, 37)
         Me.txtReps.TabIndex = 2
         '
         'chkDone
         '
         Me.chkDone.AutoSize = True
-        Me.chkDone.Location = New System.Drawing.Point(270, 13)
+        Me.chkDone.Location = New System.Drawing.Point(360, 16)
+        Me.chkDone.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.chkDone.Name = "chkDone"
-        Me.chkDone.Size = New System.Drawing.Size(15, 14)
+        Me.chkDone.Size = New System.Drawing.Size(18, 17)
         Me.chkDone.TabIndex = 3
         Me.chkDone.UseVisualStyleBackColor = True
         '
@@ -83,15 +89,16 @@ Partial Class SetRowCMS
         Me.btnDelSet.FillColor = System.Drawing.Color.Transparent
         Me.btnDelSet.Font = New System.Drawing.Font("Segoe UI", 11.0!, System.Drawing.FontStyle.Bold)
         Me.btnDelSet.ForeColor = System.Drawing.Color.FromArgb(CType(CType(140, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.btnDelSet.Location = New System.Drawing.Point(305, 7)
+        Me.btnDelSet.Location = New System.Drawing.Point(407, 9)
+        Me.btnDelSet.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnDelSet.Name = "btnDelSet"
-        Me.btnDelSet.Size = New System.Drawing.Size(26, 26)
+        Me.btnDelSet.Size = New System.Drawing.Size(35, 32)
         Me.btnDelSet.TabIndex = 4
         Me.btnDelSet.Text = "×"
         '
         'SetRowCMS
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.Controls.Add(Me.btnDelSet)
@@ -99,9 +106,9 @@ Partial Class SetRowCMS
         Me.Controls.Add(Me.txtReps)
         Me.Controls.Add(Me.txtWeight)
         Me.Controls.Add(Me.lblNum)
-        Me.Margin = New System.Windows.Forms.Padding(0, 0, 0, 4)
+        Me.Margin = New System.Windows.Forms.Padding(0, 0, 0, 5)
         Me.Name = "SetRowCMS"
-        Me.Size = New System.Drawing.Size(340, 40)
+        Me.Size = New System.Drawing.Size(453, 49)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
