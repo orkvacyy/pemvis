@@ -35,7 +35,7 @@ Partial Class Form2
         Me.lblTitle.ForeColor = System.Drawing.Color.White
         Me.lblTitle.Location = New System.Drawing.Point(20, 20)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(313, 51)
+        Me.lblTitle.Size = New System.Drawing.Size(200, 32)
         Me.lblTitle.TabIndex = 0
         Me.lblTitle.Text = "Custom exercise"
         '
@@ -46,7 +46,7 @@ Partial Class Form2
         Me.lblName.ForeColor = System.Drawing.Color.LightGray
         Me.lblName.Location = New System.Drawing.Point(22, 65)
         Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(83, 36)
+        Me.lblName.Size = New System.Drawing.Size(56, 23)
         Me.lblName.TabIndex = 1
         Me.lblName.Text = "Name"
         '
@@ -59,7 +59,7 @@ Partial Class Form2
         Me.txtExName.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.txtExName.ForeColor = System.Drawing.Color.White
         Me.txtExName.Location = New System.Drawing.Point(25, 102)
-        Me.txtExName.Margin = New System.Windows.Forms.Padding(7, 7, 7, 7)
+        Me.txtExName.Margin = New System.Windows.Forms.Padding(7)
         Me.txtExName.Name = "txtExName"
         Me.txtExName.PlaceholderText = "Exercise Name"
         Me.txtExName.SelectedText = ""
@@ -73,7 +73,7 @@ Partial Class Form2
         Me.lblMuscle.ForeColor = System.Drawing.Color.LightGray
         Me.lblMuscle.Location = New System.Drawing.Point(22, 150)
         Me.lblMuscle.Name = "lblMuscle"
-        Me.lblMuscle.Size = New System.Drawing.Size(175, 36)
+        Me.lblMuscle.Size = New System.Drawing.Size(116, 23)
         Me.lblMuscle.TabIndex = 3
         Me.lblMuscle.Text = "Muscle Group"
         '
@@ -103,7 +103,7 @@ Partial Class Form2
         Me.lblEq.ForeColor = System.Drawing.Color.LightGray
         Me.lblEq.Location = New System.Drawing.Point(22, 235)
         Me.lblEq.Name = "lblEq"
-        Me.lblEq.Size = New System.Drawing.Size(139, 36)
+        Me.lblEq.Size = New System.Drawing.Size(93, 23)
         Me.lblEq.TabIndex = 5
         Me.lblEq.Text = "Equipment"
         '
@@ -128,8 +128,10 @@ Partial Class Form2
         '
         'btnSave
         '
+        Me.btnSave.Animated = True
+        Me.btnSave.BackColor = System.Drawing.Color.Red
         Me.btnSave.BorderRadius = 5
-        Me.btnSave.FillColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(246, Byte), Integer))
+        Me.btnSave.FillColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btnSave.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.btnSave.ForeColor = System.Drawing.Color.White
         Me.btnSave.Location = New System.Drawing.Point(265, 321)
@@ -152,7 +154,7 @@ Partial Class Form2
         '
         'Form2
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(14.0!, 36.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer), CType(CType(26, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(493, 442)

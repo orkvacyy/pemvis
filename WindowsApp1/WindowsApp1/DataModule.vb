@@ -22,17 +22,33 @@ Module DataModule
         Try
             Using conn As MySqlConnection = GetConnection()
                 conn.Open()
-                ' Simpan sebagai Custom Exercise (Local) milik user yang login
-                Using cmd As New MySqlCommand("INSERT INTO exercises (name, muscle_group, equipment, user_id) VALUES (@name, @muscle, @eq, @uid)", conn)
+                Dim sql As String
+                Dim cmd As MySqlCommand
+
+                If SessionModule.CurrentRole = "admin" Then
+                    ' Admin: simpan sebagai Global (user_id NULL → tampil ke semua user)
+                    sql = "INSERT INTO exercises (name, muscle_group, equipment, user_id) VALUES (@name, @muscle, @eq, NULL)"
+                    cmd = New MySqlCommand(sql, conn)
+                    cmd.Parameters.AddWithValue("@name", name)
+                    cmd.Parameters.AddWithValue("@muscle", muscle)
+                    cmd.Parameters.AddWithValue("@eq", equipment)
+                Else
+                    ' User biasa: simpan sebagai Custom/Lokal
+                    sql = "INSERT INTO exercises (name, muscle_group, equipment, user_id) VALUES (@name, @muscle, @eq, @uid)"
+                    cmd = New MySqlCommand(sql, conn)
                     cmd.Parameters.AddWithValue("@name", name)
                     cmd.Parameters.AddWithValue("@muscle", muscle)
                     cmd.Parameters.AddWithValue("@eq", equipment)
                     cmd.Parameters.AddWithValue("@uid", SessionModule.CurrentUserId)
-                    cmd.ExecuteNonQuery()
-                End Using
+                End If
+
+                cmd.ExecuteNonQuery()
+                cmd.Dispose()
             End Using
             Return True
         Catch ex As Exception
+            MessageBox.Show("Gagal tambah exercise: " & ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -41,12 +57,24 @@ Module DataModule
         Try
             Using conn As MySqlConnection = GetConnection()
                 conn.Open()
-                Using cmd As New MySqlCommand(
-                    "UPDATE exercises SET name=@name, muscle_group=@muscle, equipment=@eq WHERE id=@id", conn)
+                Dim sql As String
+
+                If SessionModule.CurrentRole = "admin" Then
+                    ' Admin bisa edit exercise apapun
+                    sql = "UPDATE exercises SET name=@name, muscle_group=@muscle, equipment=@eq WHERE id=@id"
+                Else
+                    ' User hanya bisa edit exercise miliknya sendiri
+                    sql = "UPDATE exercises SET name=@name, muscle_group=@muscle, equipment=@eq WHERE id=@id AND user_id=@uid"
+                End If
+
+                Using cmd As New MySqlCommand(sql, conn)
                     cmd.Parameters.AddWithValue("@id", id)
                     cmd.Parameters.AddWithValue("@name", name)
                     cmd.Parameters.AddWithValue("@muscle", muscle)
                     cmd.Parameters.AddWithValue("@eq", equipment)
+                    If SessionModule.CurrentRole <> "admin" Then
+                        cmd.Parameters.AddWithValue("@uid", SessionModule.CurrentUserId)
+                    End If
                     cmd.ExecuteNonQuery()
                 End Using
             End Using
@@ -61,8 +89,21 @@ Module DataModule
         Try
             Using conn As MySqlConnection = GetConnection()
                 conn.Open()
-                Using cmd As New MySqlCommand("DELETE FROM exercises WHERE id = @id", conn)
+                Dim sql As String
+
+                If SessionModule.CurrentRole = "admin" Then
+                    ' Admin bisa hapus exercise apapun
+                    sql = "DELETE FROM exercises WHERE id = @id"
+                Else
+                    ' User hanya bisa hapus exercise miliknya sendiri
+                    sql = "DELETE FROM exercises WHERE id = @id AND user_id = @uid"
+                End If
+
+                Using cmd As New MySqlCommand(sql, conn)
                     cmd.Parameters.AddWithValue("@id", id)
+                    If SessionModule.CurrentRole <> "admin" Then
+                        cmd.Parameters.AddWithValue("@uid", SessionModule.CurrentUserId)
+                    End If
                     cmd.ExecuteNonQuery()
                 End Using
             End Using
@@ -339,15 +380,18 @@ Module DataModule
         Try
             Using conn As MySqlConnection = GetConnection()
                 conn.Open()
-                Using cmd As New MySqlCommand("SELECT id FROM users WHERE username=@u AND password=@p", conn)
+                Using cmd As New MySqlCommand(
+                "SELECT id, role FROM users WHERE username=@u AND password=@p", conn)
                     cmd.Parameters.AddWithValue("@u", username)
                     cmd.Parameters.AddWithValue("@p", password)
-                    Dim result = cmd.ExecuteScalar()
-                    If result IsNot Nothing Then
-                        SessionModule.CurrentUserId = CInt(result)
-                        SessionModule.CurrentUsername = username
-                        Return True
-                    End If
+                    Using dr As MySqlDataReader = cmd.ExecuteReader()
+                        If dr.Read() Then
+                            SessionModule.CurrentUserId = CInt(dr("id"))
+                            SessionModule.CurrentUsername = username
+                            SessionModule.CurrentRole = dr("role").ToString()  ' ← Simpan role
+                            Return True
+                        End If
+                    End Using
                 End Using
             End Using
         Catch ex As Exception

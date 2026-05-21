@@ -83,7 +83,7 @@ Partial Class Form3
         Me.lblDate.ForeColor = System.Drawing.Color.FromArgb(CType(CType(130, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(130, Byte), Integer))
         Me.lblDate.Location = New System.Drawing.Point(352, 30)
         Me.lblDate.Name = "lblDate"
-        Me.lblDate.Size = New System.Drawing.Size(21, 17)
+        Me.lblDate.Size = New System.Drawing.Size(26, 21)
         Me.lblDate.TabIndex = 1
         Me.lblDate.Text = "—"
         '
@@ -91,7 +91,7 @@ Partial Class Form3
         '
         Me.btnFinish.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnFinish.BorderRadius = 7
-        Me.btnFinish.FillColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(246, Byte), Integer))
+        Me.btnFinish.FillColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btnFinish.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
         Me.btnFinish.ForeColor = System.Drawing.Color.White
         Me.btnFinish.Location = New System.Drawing.Point(700, 20)
@@ -131,7 +131,7 @@ Partial Class Form3
         Me.btnAddExercise.BorderRadius = 8
         Me.btnAddExercise.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.btnAddExercise.Font = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnAddExercise.ForeColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(246, Byte), Integer))
+        Me.btnAddExercise.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btnAddExercise.Location = New System.Drawing.Point(370, 12)
         Me.btnAddExercise.Name = "btnAddExercise"
         Me.btnAddExercise.Size = New System.Drawing.Size(200, 42)
@@ -153,7 +153,7 @@ Partial Class Form3
         '
         'Form3
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 17.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(940, 736)

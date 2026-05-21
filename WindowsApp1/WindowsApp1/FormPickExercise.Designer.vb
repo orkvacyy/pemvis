@@ -85,7 +85,7 @@ Partial Class FormPickExercise
         Me.lblTitle.ForeColor = System.Drawing.Color.White
         Me.lblTitle.Location = New System.Drawing.Point(15, 14)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(236, 45)
+        Me.lblTitle.Size = New System.Drawing.Size(152, 28)
         Me.lblTitle.TabIndex = 0
         Me.lblTitle.Text = "Select Exercise"
         '
@@ -97,7 +97,7 @@ Partial Class FormPickExercise
         Me.lstExercises.Font = New System.Drawing.Font("Segoe UI", 10.5!)
         Me.lstExercises.ForeColor = System.Drawing.Color.White
         Me.lstExercises.FormattingEnabled = True
-        Me.lstExercises.ItemHeight = 38
+        Me.lstExercises.ItemHeight = 23
         Me.lstExercises.Location = New System.Drawing.Point(0, 120)
         Me.lstExercises.Name = "lstExercises"
         Me.lstExercises.Size = New System.Drawing.Size(500, 370)
@@ -120,7 +120,7 @@ Partial Class FormPickExercise
         '
         Me.btnSelect.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnSelect.BorderRadius = 7
-        Me.btnSelect.FillColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(246, Byte), Integer))
+        Me.btnSelect.FillColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btnSelect.Font = New System.Drawing.Font("Segoe UI", 9.5!, System.Drawing.FontStyle.Bold)
         Me.btnSelect.ForeColor = System.Drawing.Color.White
         Me.btnSelect.Location = New System.Drawing.Point(390, 10)
@@ -144,7 +144,7 @@ Partial Class FormPickExercise
         '
         'FormPickExercise
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(14.0!, 36.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(500, 550)
