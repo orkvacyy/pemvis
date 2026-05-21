@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Text.RegularExpressions
+Imports System.Windows.Forms
 
 Public Class FormLogin
 
@@ -8,6 +9,12 @@ Public Class FormLogin
             MessageBox.Show("Username dan Password tidak boleh kosong!", "Peringatan",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
+        End If
+
+        If Not Regex.IsMatch(txtUsername.Text, "[a-zA-Z0-9]") Then
+            ' Jika tidak ada huruf atau angka sama sekali (hanya simbol/kosong)
+            MessageBox.Show("Error: Username harus mengandung huruf atau angka, tidak boleh hanya simbol.", "Validasi Gagal")
+            Exit Sub
         End If
 
         If DataModule.LoginUser(txtUsername.Text.Trim(), txtPassword.Text) Then
@@ -35,4 +42,7 @@ Public Class FormLogin
 
     End Sub
 
+    Private Sub FormLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class
