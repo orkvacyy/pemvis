@@ -138,13 +138,12 @@ Public Class Form3
         Dim startX As Integer = 60
         Dim startY As Integer = 60
         Dim offset As Integer = 0
-        'Background'    
+
         Dim pageWidth As Integer = e.PageBounds.Width - 120
         Dim colorBackground As Color = Color.FromArgb(18, 18, 18)
         Dim brushBackground As New SolidBrush(colorBackground)
         g.FillRectangle(brushBackground, e.PageBounds)
 
-        ' Font & Warna
         Dim fontTitle As New Font("Segoe UI", 16, FontStyle.Bold)
         Dim fontHeader As New Font("Segoe UI", 11, FontStyle.Bold)
         Dim fontSub As New Font("Segoe UI", 9, FontStyle.Regular)

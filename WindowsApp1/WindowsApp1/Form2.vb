@@ -23,7 +23,6 @@ Public Class Form2
             Return
         End If
         If Not Regex.IsMatch(txtExName.Text, "[a-zA-Z0-9]") Then
-            ' Jika tidak ada huruf atau angka sama sekali (hanya simbol/kosong)
             MessageBox.Show("Error: Username harus mengandung huruf atau angka, tidak boleh hanya simbol.", "Validasi Gagal")
             Exit Sub
         End If

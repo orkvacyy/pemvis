@@ -65,6 +65,9 @@ Public Class FormPickExercise
         Me.Close()
     End Sub
 
+    Private Sub pnlSearch_Paint(sender As Object, e As PaintEventArgs) Handles pnlSearch.Paint
+
+    End Sub
 End Class
 
 Friend Class ExerciseItem
