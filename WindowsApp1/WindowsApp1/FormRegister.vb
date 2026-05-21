@@ -22,7 +22,7 @@ Public Class FormRegister
             Return
         End If
 
-        If txtPassword.Text.Length < 4 Then
+        If txtPassword.Text.Trim().Length < 4 Then
             MessageBox.Show("Password minimal 4 karakter!", "Peringatan",
                             MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return

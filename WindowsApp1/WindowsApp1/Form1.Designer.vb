@@ -135,8 +135,8 @@ Partial Class Form1
         '
         'pnlMain
         '
-        Me.pnlMain.Controls.Add(Me.flpWorkouts)
         Me.pnlMain.Controls.Add(Me.btnNewWorkout)
+        Me.pnlMain.Controls.Add(Me.flpWorkouts)
         Me.pnlMain.Controls.Add(Me.lblTitle)
         Me.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlMain.FillColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
@@ -153,7 +153,6 @@ Partial Class Form1
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.flpWorkouts.AutoScroll = True
         Me.flpWorkouts.BackColor = System.Drawing.Color.Transparent
-        Me.flpWorkouts.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.flpWorkouts.Location = New System.Drawing.Point(45, 112)
         Me.flpWorkouts.Name = "flpWorkouts"
         Me.flpWorkouts.Size = New System.Drawing.Size(985, 616)

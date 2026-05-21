@@ -39,6 +39,30 @@ Public Class Form1
         TampilLibrary()
     End Sub
 
+    Private Sub ResizeFlpChildren(flp As FlowLayoutPanel)
+        If flp Is Nothing OrElse flp.Controls.Count = 0 Then Return
+        flp.SuspendLayout()
+        Try
+            Dim targetWidth As Integer = flp.ClientSize.Width - flp.Padding.Left - flp.Padding.Right
+            For Each ctrl As Control In flp.Controls
+                Dim finalWidth As Integer = targetWidth - ctrl.Margin.Left - ctrl.Margin.Right
+                If finalWidth > 0 AndAlso ctrl.Width <> finalWidth Then
+                    ctrl.Width = finalWidth
+                End If
+            Next
+        Finally
+            flp.ResumeLayout()
+        End Try
+    End Sub
+
+    Private Sub flpWorkouts_SizeChanged(sender As Object, e As EventArgs) Handles flpWorkouts.SizeChanged
+        ResizeFlpChildren(flpWorkouts)
+    End Sub
+
+    Private Sub flpLib_SizeChanged(sender As Object, e As EventArgs) Handles flpLib.SizeChanged
+        ResizeFlpChildren(flpLib)
+    End Sub
+
     Public Sub TampilWorkouts()
         flpWorkouts.Controls.Clear()
         Dim dt As DataTable = DataModule.getWorkouts()
@@ -65,7 +89,6 @@ Public Class Form1
 
             Dim card As New WorkoutCMS()
             card.Margin = New Padding(0, 0, 0, 10)
-            card.Width = flpWorkouts.ClientSize.Width - 15
             card.SetData(wid, wName, wDate, exCount, setCount)
 
             AddHandler card.OpenClicked, Sub(clickedId)
@@ -76,14 +99,15 @@ Public Class Form1
                                          End Sub
 
             AddHandler card.DeleteClicked, Sub(delId, delName)
-                                               If MessageBox.Show($"Hapus workout '{delName}'?", "Konfirmasi",
-                                                                  MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
+                                               If MessageBox.Show($"Hapus workout '{delName}'?", "Konfirmasi", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.Yes Then
                                                    If DataModule.delWorkout(delId) Then TampilWorkouts()
                                                End If
                                            End Sub
 
             flpWorkouts.Controls.Add(card)
         Next
+
+        ResizeFlpChildren(flpWorkouts)
     End Sub
 
     Private Sub btnNewWorkout_Click(sender As Object, e As EventArgs) Handles btnNewWorkout.Click
@@ -107,15 +131,6 @@ Public Class Form1
             btnNewWorkout.Enabled = True
         End Try
     End Sub
-
-    Private Sub flpWorkouts_SizeChanged(sender As Object, e As EventArgs) Handles flpWorkouts.SizeChanged
-        flpWorkouts.SuspendLayout()
-        For Each ctrl As Control In flpWorkouts.Controls
-            ctrl.Width = flpWorkouts.ClientSize.Width - 50
-        Next
-        flpWorkouts.ResumeLayout()
-    End Sub
-
 
     Public Sub TampilLibrary()
         flpLib.Controls.Clear()
@@ -159,12 +174,12 @@ Public Class Form1
 
             For Each row In globalRows
                 Dim item As New LibraryMasterCMS()
-                item.Width = flpLib.ClientSize.Width - 15
                 item.SetData(row("id"), row("name"), row("muscle_group"), row("equipment"), row("user_id"))
                 AddLibraryHandlers(item)
                 flpLib.Controls.Add(item)
             Next
         End If
+
         If customRows.Count > 0 Then
             Dim lblCustomHeader As New Label() With {
                 .Text = "USER-CREATED EXERCISES",
@@ -179,12 +194,13 @@ Public Class Form1
 
             For Each row In customRows
                 Dim item As New LibraryMasterCMS()
-                item.Width = flpLib.ClientSize.Width - 15
                 item.SetData(row("id"), row("name"), row("muscle_group"), row("equipment"), row("user_id"))
                 AddLibraryHandlers(item)
                 flpLib.Controls.Add(item)
             Next
         End If
+
+        ResizeFlpChildren(flpLib)
     End Sub
 
     Private Sub AddLibraryHandlers(item As LibraryMasterCMS)
@@ -195,8 +211,7 @@ Public Class Form1
                                      End Sub
 
         AddHandler item.DeleteClicked, Sub(id, name)
-                                           If MessageBox.Show($"Hapus '{name}'?", "Konfirmasi",
-                                                              MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                                           If MessageBox.Show($"Hapus '{name}'?", "Konfirmasi", MessageBoxButtons.YesNo) = DialogResult.Yes Then
                                                If DataModule.delExec(id) Then TampilLibrary()
                                            End If
                                        End Sub
@@ -205,14 +220,6 @@ Public Class Form1
     Private Sub btnCustomExercise_Click(sender As Object, e As EventArgs) Handles btnCustomExercise.Click
         Dim popup As New Form2()
         If popup.ShowDialog() = DialogResult.OK Then TampilLibrary()
-    End Sub
-
-    Private Sub flpLib_SizeChanged(sender As Object, e As EventArgs) Handles flpLib.SizeChanged
-        flpLib.SuspendLayout()
-        For Each ctrl As Control In flpLib.Controls
-            ctrl.Width = flpLib.ClientSize.Width - 15
-        Next
-        flpLib.ResumeLayout()
     End Sub
 
     Private Sub btnWorkout_Click(sender As Object, e As EventArgs) Handles btnWorkout.Click
@@ -255,7 +262,6 @@ Public Class Form1
 
             Dim card As New Guna2Panel() With {
                 .Height = 60,
-                .Width = flpWorkouts.ClientSize.Width - 15,
                 .BorderRadius = 6,
                 .FillColor = Drawing.Color.FromArgb(32, 32, 32),
                 .Margin = New Padding(0, 0, 0, 10)
@@ -294,12 +300,12 @@ Public Class Form1
                 .Cursor = Cursors.Hand
             }
             AddHandler btnEditUser.Click, Sub()
-                                             Dim popup As New FormUserPopup()
-                                             popup.SetUserData(uid, username, password, role)
-                                             If popup.ShowDialog() = DialogResult.OK Then
-                                                 TampilUsers()
-                                             End If
-                                         End Sub
+                                              Dim popup As New FormUserPopup()
+                                              popup.SetUserData(uid, username, password, role)
+                                              If popup.ShowDialog() = DialogResult.OK Then
+                                                  TampilUsers()
+                                              End If
+                                          End Sub
             card.Controls.Add(btnEditUser)
 
             Dim btnDelUser As New Guna2Button() With {
@@ -331,6 +337,8 @@ Public Class Form1
 
             flpWorkouts.Controls.Add(card)
         Next
+
+        ResizeFlpChildren(flpWorkouts)
     End Sub
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
@@ -341,11 +349,9 @@ Public Class Form1
         Me.Close()
     End Sub
 
-
     Private Sub pnlMain_Paint(sender As Object, e As PaintEventArgs) Handles pnlMain.Paint
     End Sub
 
     Private Sub flpWorkouts_Paint(sender As Object, e As PaintEventArgs) Handles flpWorkouts.Paint
-
     End Sub
 End Class
