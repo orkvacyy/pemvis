@@ -23,21 +23,21 @@ Partial Class Form1
         Me.btnWorkout = New Guna.UI2.WinForms.Guna2Button()
         Me.btnLogout = New Guna.UI2.WinForms.Guna2Button()
         Me.pnlLogo = New Guna.UI2.WinForms.Guna2Panel()
+        Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
         Me.pnlMain = New Guna.UI2.WinForms.Guna2Panel()
-        Me.flpWorkouts = New System.Windows.Forms.FlowLayoutPanel()
         Me.btnNewWorkout = New Guna.UI2.WinForms.Guna2Button()
         Me.lblTitle = New System.Windows.Forms.Label()
-        Me.pnlLibrary = New Guna.UI2.WinForms.Guna2Panel()
-        Me.flpLib = New System.Windows.Forms.FlowLayoutPanel()
-        Me.btnCustomExercise = New Guna.UI2.WinForms.Guna2Button()
-        Me.lblLibTitle = New System.Windows.Forms.Label()
         Me.sidebarTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
+        Me.lblLibTitle = New System.Windows.Forms.Label()
+        Me.btnCustomExercise = New Guna.UI2.WinForms.Guna2Button()
+        Me.pnlLibrary = New Guna.UI2.WinForms.Guna2Panel()
+        Me.flpWorkouts = New System.Windows.Forms.FlowLayoutPanel()
+        Me.flpLib = New System.Windows.Forms.FlowLayoutPanel()
         Me.pnlSidebar.SuspendLayout()
         Me.pnlLogo.SuspendLayout()
+        CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlMain.SuspendLayout()
         Me.pnlLibrary.SuspendLayout()
-        CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlSidebar
@@ -79,8 +79,8 @@ Partial Class Form1
         Me.btnLogout.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.btnLogout.FillColor = System.Drawing.Color.Transparent
         Me.btnLogout.Font = New System.Drawing.Font("Segoe UI", 11.25!)
-        Me.btnLogout.ForeColor = System.Drawing.Color.FromArgb(239, 68, 68)
-        Me.btnLogout.HoverState.FillColor = System.Drawing.Color.FromArgb(42, 42, 42)
+        Me.btnLogout.ForeColor = System.Drawing.Color.FromArgb(CType(CType(239, Byte), Integer), CType(CType(68, Byte), Integer), CType(CType(68, Byte), Integer))
+        Me.btnLogout.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
         Me.btnLogout.Location = New System.Drawing.Point(0, 716)
         Me.btnLogout.Name = "btnLogout"
         Me.btnLogout.Size = New System.Drawing.Size(220, 50)
@@ -99,6 +99,18 @@ Partial Class Form1
         Me.pnlLogo.Size = New System.Drawing.Size(220, 80)
         Me.pnlLogo.TabIndex = 0
         '
+        'Guna2PictureBox1
+        '
+        Me.Guna2PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.Guna2PictureBox1.Image = CType(resources.GetObject("Guna2PictureBox1.Image"), System.Drawing.Image)
+        Me.Guna2PictureBox1.ImageRotate = 0!
+        Me.Guna2PictureBox1.Location = New System.Drawing.Point(72, 4)
+        Me.Guna2PictureBox1.Name = "Guna2PictureBox1"
+        Me.Guna2PictureBox1.Size = New System.Drawing.Size(58, 70)
+        Me.Guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.Guna2PictureBox1.TabIndex = 2
+        Me.Guna2PictureBox1.TabStop = False
+        '
         'pnlMain
         '
         Me.pnlMain.Controls.Add(Me.flpWorkouts)
@@ -111,25 +123,12 @@ Partial Class Form1
         Me.pnlMain.Size = New System.Drawing.Size(1065, 766)
         Me.pnlMain.TabIndex = 1
         '
-        'flpWorkouts
-        '
-        Me.flpWorkouts.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.flpWorkouts.AutoScroll = True
-        Me.flpWorkouts.BackColor = System.Drawing.Color.Transparent
-        Me.flpWorkouts.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.flpWorkouts.Location = New System.Drawing.Point(40, 130)
-        Me.flpWorkouts.Name = "flpWorkouts"
-        Me.flpWorkouts.Size = New System.Drawing.Size(985, 616)
-        Me.flpWorkouts.TabIndex = 2
-        Me.flpWorkouts.WrapContents = False
-        '
         'btnNewWorkout
         '
         Me.btnNewWorkout.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnNewWorkout.BackColor = System.Drawing.Color.Black
         Me.btnNewWorkout.BorderRadius = 8
-        Me.btnNewWorkout.FillColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(246, Byte), Integer))
+        Me.btnNewWorkout.FillColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.btnNewWorkout.Font = New System.Drawing.Font("Malgun Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnNewWorkout.ForeColor = System.Drawing.Color.White
         Me.btnNewWorkout.Location = New System.Drawing.Point(870, 30)
@@ -146,9 +145,39 @@ Partial Class Form1
         Me.lblTitle.ForeColor = System.Drawing.Color.White
         Me.lblTitle.Location = New System.Drawing.Point(40, 28)
         Me.lblTitle.Name = "lblTitle"
-        Me.lblTitle.Size = New System.Drawing.Size(77, 21)
+        Me.lblTitle.Size = New System.Drawing.Size(95, 28)
         Me.lblTitle.TabIndex = 0
         Me.lblTitle.Text = "Workout"
+        '
+        'sidebarTimer
+        '
+        Me.sidebarTimer.Interval = 10
+        '
+        'lblLibTitle
+        '
+        Me.lblLibTitle.AutoSize = True
+        Me.lblLibTitle.BackColor = System.Drawing.Color.Transparent
+        Me.lblLibTitle.Font = New System.Drawing.Font("Malgun Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblLibTitle.ForeColor = System.Drawing.Color.White
+        Me.lblLibTitle.Location = New System.Drawing.Point(10, 22)
+        Me.lblLibTitle.Name = "lblLibTitle"
+        Me.lblLibTitle.Size = New System.Drawing.Size(161, 28)
+        Me.lblLibTitle.TabIndex = 0
+        Me.lblLibTitle.Text = "Exercise Library"
+        '
+        'btnCustomExercise
+        '
+        Me.btnCustomExercise.BackColor = System.Drawing.Color.Transparent
+        Me.btnCustomExercise.BorderRadius = 6
+        Me.btnCustomExercise.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.btnCustomExercise.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
+        Me.btnCustomExercise.Font = New System.Drawing.Font("Malgun Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCustomExercise.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btnCustomExercise.Location = New System.Drawing.Point(10, 68)
+        Me.btnCustomExercise.Name = "btnCustomExercise"
+        Me.btnCustomExercise.Size = New System.Drawing.Size(250, 36)
+        Me.btnCustomExercise.TabIndex = 2
+        Me.btnCustomExercise.Text = "+ Custom Exercise"
         '
         'pnlLibrary
         '
@@ -164,6 +193,20 @@ Partial Class Form1
         Me.pnlLibrary.Size = New System.Drawing.Size(270, 766)
         Me.pnlLibrary.TabIndex = 2
         '
+        'flpWorkouts
+        '
+        Me.flpWorkouts.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.flpWorkouts.AutoScroll = True
+        Me.flpWorkouts.BackColor = System.Drawing.Color.Transparent
+        Me.flpWorkouts.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.flpWorkouts.Location = New System.Drawing.Point(45, 112)
+        Me.flpWorkouts.Name = "flpWorkouts"
+        Me.flpWorkouts.Size = New System.Drawing.Size(985, 616)
+        Me.flpWorkouts.TabIndex = 4
+        Me.flpWorkouts.WrapContents = False
+        '
         'flpLib
         '
         Me.flpLib.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -172,57 +215,15 @@ Partial Class Form1
         Me.flpLib.AutoScroll = True
         Me.flpLib.BackColor = System.Drawing.Color.Transparent
         Me.flpLib.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.flpLib.Location = New System.Drawing.Point(10, 115)
+        Me.flpLib.Location = New System.Drawing.Point(10, 125)
         Me.flpLib.Name = "flpLib"
         Me.flpLib.Size = New System.Drawing.Size(250, 641)
-        Me.flpLib.TabIndex = 1
+        Me.flpLib.TabIndex = 3
         Me.flpLib.WrapContents = False
-        '
-        'btnCustomExercise
-        '
-        Me.btnCustomExercise.BackColor = System.Drawing.Color.Transparent
-        Me.btnCustomExercise.BorderRadius = 6
-        Me.btnCustomExercise.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.btnCustomExercise.FillColor = System.Drawing.Color.FromArgb(CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer), CType(CType(42, Byte), Integer))
-        Me.btnCustomExercise.Font = New System.Drawing.Font("Malgun Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCustomExercise.ForeColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(130, Byte), Integer), CType(CType(246, Byte), Integer))
-        Me.btnCustomExercise.Location = New System.Drawing.Point(10, 68)
-        Me.btnCustomExercise.Name = "btnCustomExercise"
-        Me.btnCustomExercise.Size = New System.Drawing.Size(250, 36)
-        Me.btnCustomExercise.TabIndex = 2
-        Me.btnCustomExercise.Text = "+ Custom Exercise"
-        '
-        'lblLibTitle
-        '
-        Me.lblLibTitle.AutoSize = True
-        Me.lblLibTitle.BackColor = System.Drawing.Color.Transparent
-        Me.lblLibTitle.Font = New System.Drawing.Font("Malgun Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblLibTitle.ForeColor = System.Drawing.Color.White
-        Me.lblLibTitle.Location = New System.Drawing.Point(10, 22)
-        Me.lblLibTitle.Name = "lblLibTitle"
-        Me.lblLibTitle.Size = New System.Drawing.Size(129, 21)
-        Me.lblLibTitle.TabIndex = 0
-        Me.lblLibTitle.Text = "Exercise Library"
-        '
-        'sidebarTimer
-        '
-        Me.sidebarTimer.Interval = 10
-        '
-        'Guna2PictureBox1
-        '
-        Me.Guna2PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.Guna2PictureBox1.Image = CType(resources.GetObject("Guna2PictureBox1.Image"), System.Drawing.Image)
-        Me.Guna2PictureBox1.ImageRotate = 0!
-        Me.Guna2PictureBox1.Location = New System.Drawing.Point(72, 4)
-        Me.Guna2PictureBox1.Name = "Guna2PictureBox1"
-        Me.Guna2PictureBox1.Size = New System.Drawing.Size(58, 70)
-        Me.Guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.Guna2PictureBox1.TabIndex = 2
-        Me.Guna2PictureBox1.TabStop = False
         '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 17.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 21.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1555, 766)
@@ -232,14 +233,15 @@ Partial Class Form1
         Me.Font = New System.Drawing.Font("Segoe UI", 9.75!)
         Me.MinimumSize = New System.Drawing.Size(900, 600)
         Me.Name = "Form1"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Hevy"
         Me.pnlSidebar.ResumeLayout(False)
         Me.pnlLogo.ResumeLayout(False)
+        CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlMain.ResumeLayout(False)
         Me.pnlMain.PerformLayout()
         Me.pnlLibrary.ResumeLayout(False)
         Me.pnlLibrary.PerformLayout()
-        CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -249,13 +251,13 @@ Partial Class Form1
     Friend WithEvents btnWorkout As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents pnlMain As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents lblTitle As System.Windows.Forms.Label
-    Friend WithEvents btnNewWorkout As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents flpWorkouts As System.Windows.Forms.FlowLayoutPanel
-    Friend WithEvents pnlLibrary As Guna.UI2.WinForms.Guna2Panel
-    Friend WithEvents lblLibTitle As System.Windows.Forms.Label
-    Friend WithEvents flpLib As System.Windows.Forms.FlowLayoutPanel
-    Friend WithEvents btnCustomExercise As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents sidebarTimer As System.Windows.Forms.Timer
     Friend WithEvents Guna2PictureBox1 As Guna.UI2.WinForms.Guna2PictureBox
     Friend WithEvents btnLogout As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btnNewWorkout As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents lblLibTitle As Label
+    Friend WithEvents btnCustomExercise As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents pnlLibrary As Guna.UI2.WinForms.Guna2Panel
+    Friend WithEvents flpWorkouts As FlowLayoutPanel
+    Friend WithEvents flpLib As FlowLayoutPanel
 End Class

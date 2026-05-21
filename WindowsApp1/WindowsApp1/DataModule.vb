@@ -22,8 +22,8 @@ Module DataModule
         Try
             Using conn As MySqlConnection = GetConnection()
                 conn.Open()
-                ' Simpan sebagai Custom Exercise (Local) milik user yang login
-                Using cmd As New MySqlCommand("INSERT INTO exercises (name, muscle_group, equipment, user_id) VALUES (@name, @muscle, @eq, @uid)", conn)
+                Using cmd As New MySqlCommand(
+                "INSERT INTO exercises (name, muscle_group, equipment, user_id) VALUES (@name, @muscle, @eq, @uid)", conn)
                     cmd.Parameters.AddWithValue("@name", name)
                     cmd.Parameters.AddWithValue("@muscle", muscle)
                     cmd.Parameters.AddWithValue("@eq", equipment)
@@ -33,6 +33,8 @@ Module DataModule
             End Using
             Return True
         Catch ex As Exception
+            MessageBox.Show("Gagal tambah exercise: " & ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function

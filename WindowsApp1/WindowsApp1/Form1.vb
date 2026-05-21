@@ -4,13 +4,23 @@ Imports Guna.UI2.WinForms
 Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TampilWorkouts()
-        TampilLibrary()
+        ' Setup flpWorkouts (panel kiri)
         flpWorkouts.HorizontalScroll.Maximum = 0
         flpWorkouts.AutoScroll = False
         flpWorkouts.VerticalScroll.Visible = False
         flpWorkouts.AutoScroll = True
+
+        ' Setup flpLib (panel kanan)
+        flpLib.HorizontalScroll.Maximum = 0
+        flpLib.AutoScroll = False
+        flpLib.VerticalScroll.Visible = False
+        flpLib.AutoScroll = True
+
+        TampilWorkouts()
+        TampilLibrary()
     End Sub
+
+    ' ── WORKOUT (Panel Kiri) ─────────────────────────────────
 
     Public Sub TampilWorkouts()
         flpWorkouts.Controls.Clear()
@@ -37,10 +47,8 @@ Public Class Form1
             Dim setCount As Integer = CInt(row("set_count"))
 
             Dim card As New WorkoutCMS()
-
             card.Margin = New Padding(0, 0, 0, 10)
             card.Width = flpWorkouts.ClientSize.Width - 15
-
             card.SetData(wid, wName, wDate, exCount, setCount)
 
             AddHandler card.OpenClicked, Sub(clickedId)
@@ -56,11 +64,10 @@ Public Class Form1
                                                    If DataModule.delWorkout(delId) Then TampilWorkouts()
                                                End If
                                            End Sub
+
             flpWorkouts.Controls.Add(card)
         Next
     End Sub
-
-
 
     Private Sub btnNewWorkout_Click(sender As Object, e As EventArgs) Handles btnNewWorkout.Click
         Dim newId As Integer = DataModule.addWorkout("New Workout", "")
@@ -72,50 +79,73 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub flpWorkouts_SizeChanged(sender As Object, e As EventArgs) Handles flpWorkouts.SizeChanged
+        flpWorkouts.SuspendLayout()
+        For Each ctrl As Control In flpWorkouts.Controls
+            ctrl.Width = flpWorkouts.ClientSize.Width - 15
+        Next
+        flpWorkouts.ResumeLayout()
+    End Sub
+
+    ' ── LIBRARY (Panel Kanan) ────────────────────────────────
+
     Public Sub TampilLibrary()
         flpLib.Controls.Clear()
         Dim dt As DataTable = DataModule.getExec()
 
+        If dt.Rows.Count = 0 Then
+            Dim lblEmpty As New Label() With {
+                .Text = "Belum ada exercise.",
+                .ForeColor = Drawing.Color.FromArgb(100, 100, 100),
+                .Font = New Drawing.Font("Segoe UI", 11),
+                .AutoSize = False,
+                .Size = New Drawing.Size(flpLib.Width - 20, 40),
+                .TextAlign = Drawing.ContentAlignment.MiddleCenter
+            }
+            flpLib.Controls.Add(lblEmpty)
+            Return
+        End If
+
         For Each row As DataRow In dt.Rows
             Dim item As New LibraryMasterCMS()
             item.SetData(row("id"), row("name"), row("muscle_group"), row("equipment"), row("user_id"))
+
             AddHandler item.EditClicked, Sub(id, name, muscle, eq)
                                              Dim popup As New Form2()
                                              popup.SetEditData(id, name, muscle, eq)
                                              If popup.ShowDialog() = DialogResult.OK Then TampilLibrary()
                                          End Sub
+
             AddHandler item.DeleteClicked, Sub(id, name)
                                                If MessageBox.Show($"Hapus '{name}'?", "Konfirmasi",
                                                                   MessageBoxButtons.YesNo) = DialogResult.Yes Then
                                                    If DataModule.delExec(id) Then TampilLibrary()
                                                End If
                                            End Sub
+
             flpLib.Controls.Add(item)
         Next
     End Sub
-
-
 
     Private Sub btnCustomExercise_Click(sender As Object, e As EventArgs) Handles btnCustomExercise.Click
         Dim popup As New Form2()
         If popup.ShowDialog() = DialogResult.OK Then TampilLibrary()
     End Sub
 
-    Private Sub flpWorkouts_Paint(sender As Object, e As PaintEventArgs) Handles flpWorkouts.Paint
-
-    End Sub
-    ' Fungsi ini akan mendeteksi perubahan ukuran panel dan 
-    ' otomatis menyesuaikan lebar semua kartu di dalamnya
-    Private Sub flpWorkouts_SizeChanged(sender As Object, e As EventArgs) Handles flpWorkouts.SizeChanged
-        flpWorkouts.SuspendLayout()
-
-        For Each ctrl As Control In flpWorkouts.Controls
-            ' Gunakan ClientSize.Width dikurangi margin aman (misal 15)
-            ctrl.Width = flpWorkouts.ClientSize.Width - 15
+    Private Sub flpLib_SizeChanged(sender As Object, e As EventArgs) Handles flpLib.SizeChanged
+        flpLib.SuspendLayout()
+        For Each ctrl As Control In flpLib.Controls
+            ctrl.Width = flpLib.ClientSize.Width - 15
         Next
-
-        flpWorkouts.ResumeLayout()
+        flpLib.ResumeLayout()
     End Sub
+
+    ' ── SIDEBAR ──────────────────────────────────────────────
+
+    Private Sub btnWorkout_Click(sender As Object, e As EventArgs) Handles btnWorkout.Click
+        TampilWorkouts()
+    End Sub
+
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
         SessionModule.Logout()
         Dim loginForm As New FormLogin()
@@ -123,4 +153,10 @@ Public Class Form1
         loginForm.ShowDialog()
         Me.Close()
     End Sub
+
+    ' ── PAINT (kosong, biarkan saja) ─────────────────────────
+
+    Private Sub pnlMain_Paint(sender As Object, e As PaintEventArgs) Handles pnlMain.Paint
+    End Sub
+
 End Class

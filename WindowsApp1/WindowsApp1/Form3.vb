@@ -245,4 +245,8 @@ Public Class Form3
     Private Sub pnlTop_Paint(sender As Object, e As PaintEventArgs) Handles pnlTop.Paint
 
     End Sub
+
+    Private Sub flpExercises_Paint(sender As Object, e As PaintEventArgs) Handles flpExercises.Paint
+
+    End Sub
 End Class
