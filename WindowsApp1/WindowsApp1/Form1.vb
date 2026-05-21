@@ -1,4 +1,4 @@
-﻿Imports System.Data
+Imports System.Data
 Imports Guna.UI2.WinForms
 
 Public Class Form1
@@ -114,25 +114,75 @@ Public Class Form1
             Return
         End If
 
+        Dim globalRows As New List(Of DataRow)()
+        Dim customRows As New List(Of DataRow)()
+
         For Each row As DataRow In dt.Rows
-            Dim item As New LibraryMasterCMS()
-            item.SetData(row("id"), row("name"), row("muscle_group"), row("equipment"), row("user_id"))
-
-            AddHandler item.EditClicked, Sub(id, name, muscle, eq)
-                                             Dim popup As New Form2()
-                                             popup.SetEditData(id, name, muscle, eq)
-                                             If popup.ShowDialog() = DialogResult.OK Then TampilLibrary()
-                                         End Sub
-
-            AddHandler item.DeleteClicked, Sub(id, name)
-                                               If MessageBox.Show($"Hapus '{name}'?", "Konfirmasi",
-                                                                  MessageBoxButtons.YesNo) = DialogResult.Yes Then
-                                                   If DataModule.delExec(id) Then TampilLibrary()
-                                               End If
-                                           End Sub
-
-            flpLib.Controls.Add(item)
+            If IsDBNull(row("user_id")) Then
+                globalRows.Add(row)
+            Else
+                customRows.Add(row)
+            End If
         Next
+
+        ' 1. Render Global/System Exercises
+        If globalRows.Count > 0 Then
+            Dim lblDefaultHeader As New Label() With {
+                .Text = "SYSTEM EXERCISES",
+                .ForeColor = Drawing.Color.FromArgb(120, 120, 120),
+                .Font = New Drawing.Font("Segoe UI", 8.0!, Drawing.FontStyle.Bold),
+                .AutoSize = False,
+                .Size = New Drawing.Size(flpLib.Width - 25, 24),
+                .Margin = New Padding(5, 8, 0, 4),
+                .TextAlign = Drawing.ContentAlignment.BottomLeft
+            }
+            flpLib.Controls.Add(lblDefaultHeader)
+
+            For Each row In globalRows
+                Dim item As New LibraryMasterCMS()
+                item.Width = flpLib.ClientSize.Width - 15
+                item.SetData(row("id"), row("name"), row("muscle_group"), row("equipment"), row("user_id"))
+                AddLibraryHandlers(item)
+                flpLib.Controls.Add(item)
+            Next
+        End If
+
+        ' 2. Render Custom Exercises
+        If customRows.Count > 0 Then
+            Dim lblCustomHeader As New Label() With {
+                .Text = "USER-CREATED EXERCISES",
+                .ForeColor = Drawing.Color.FromArgb(0, 150, 255),
+                .Font = New Drawing.Font("Segoe UI", 8.0!, Drawing.FontStyle.Bold),
+                .AutoSize = False,
+                .Size = New Drawing.Size(flpLib.Width - 25, 24),
+                .Margin = New Padding(5, 12, 0, 4),
+                .TextAlign = Drawing.ContentAlignment.BottomLeft
+            }
+            flpLib.Controls.Add(lblCustomHeader)
+
+            For Each row In customRows
+                Dim item As New LibraryMasterCMS()
+                item.Width = flpLib.ClientSize.Width - 15
+                item.SetData(row("id"), row("name"), row("muscle_group"), row("equipment"), row("user_id"))
+                AddLibraryHandlers(item)
+                flpLib.Controls.Add(item)
+            Next
+        End If
+    End Sub
+
+    Private Sub AddLibraryHandlers(item As LibraryMasterCMS)
+        AddHandler item.EditClicked, Sub(id, name, muscle, eq)
+                                         Dim popup As New Form2()
+                                         popup.SetEditData(id, name, muscle, eq)
+                                         If popup.ShowDialog() = DialogResult.OK Then TampilLibrary()
+                                     End Sub
+
+        AddHandler item.DeleteClicked, Sub(id, name)
+                                           If MessageBox.Show($"Hapus '{name}'?", "Konfirmasi",
+                                                              MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                                               If DataModule.delExec(id) Then TampilLibrary()
+                                           End If
+                                       End Sub
     End Sub
 
     Private Sub btnCustomExercise_Click(sender As Object, e As EventArgs) Handles btnCustomExercise.Click

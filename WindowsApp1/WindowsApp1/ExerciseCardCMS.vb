@@ -1,4 +1,4 @@
-﻿Public Class ExerciseCardCMS
+Public Class ExerciseCardCMS
     Private _weId As Integer
     Private _exName As String
 
@@ -7,11 +7,22 @@
     Public Event SetDataChanged(setId As Integer, w As Decimal, r As Integer, done As Boolean)
     Public Event SetDeleteClicked(setId As Integer)
 
+    Public Property IsCardio As Boolean = False
+
     Public Sub SetHeader(weId As Integer, exName As String, muscle As String)
         _weId = weId
         _exName = exName
         lblName.Text = exName
         lblMuscle.Text = muscle
+
+        IsCardio = muscle.Trim().Equals("Cardio", StringComparison.OrdinalIgnoreCase)
+        If IsCardio Then
+            Label2.Text = "Dist (km)"
+            Label3.Text = "Time"
+        Else
+            Label2.Text = "Weight (kg)"
+            Label3.Text = "Reps"
+        End If
     End Sub
     Public Sub AddSetRow(row As SetRowCMS)
         AddHandler row.RowChanged, Sub(sId, w, r, d) RaiseEvent SetDataChanged(sId, w, r, d)

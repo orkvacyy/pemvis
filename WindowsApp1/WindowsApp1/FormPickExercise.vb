@@ -1,4 +1,4 @@
-﻿Imports System.Data
+Imports System.Data
 Imports Guna.UI2.WinForms
 
 Public Class FormPickExercise
@@ -25,8 +25,10 @@ Public Class FormPickExercise
             Dim id As Integer = CInt(row("id"))
             Dim name As String = row("name").ToString()
             Dim muscle As String = row("muscle_group").ToString()
+            Dim isCustom As Boolean = Not IsDBNull(row("user_id"))
 
-            lstExercises.Items.Add(New ExerciseItem(id, name, muscle))
+            Dim displayName As String = If(isCustom, $"👤 {name}", name)
+            lstExercises.Items.Add(New ExerciseItem(id, displayName, muscle))
         Next
     End Sub
 
