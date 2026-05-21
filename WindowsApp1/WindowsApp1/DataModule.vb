@@ -1,4 +1,4 @@
-﻿Imports MySqlConnector
+Imports MySqlConnector
 Imports System.Data
 Imports System.Windows.Forms
 
@@ -7,9 +7,19 @@ Module DataModule
         Dim dt As New DataTable()
         Try
             Using conn As MySqlConnection = GetConnection()
-                ' Ambil exercise Global (user_id IS NULL) dan Local milik user yang login
-                Using da As New MySqlDataAdapter("SELECT * FROM exercises WHERE user_id IS NULL OR user_id = @uid ORDER BY name ASC", conn)
-                    da.SelectCommand.Parameters.AddWithValue("@uid", SessionModule.CurrentUserId)
+                Dim sql As String
+                If SessionModule.CurrentRole = "admin" Then
+                    ' Admin: ambil semua exercise (Global & Custom milik semua user)
+                    sql = "SELECT * FROM exercises ORDER BY name ASC"
+                Else
+                    ' User biasa: ambil exercise Global (user_id IS NULL) dan Custom milik sendiri
+                    sql = "SELECT * FROM exercises WHERE user_id IS NULL OR user_id = @uid ORDER BY name ASC"
+                End If
+
+                Using da As New MySqlDataAdapter(sql, conn)
+                    If SessionModule.CurrentRole <> "admin" Then
+                        da.SelectCommand.Parameters.AddWithValue("@uid", SessionModule.CurrentUserId)
+                    End If
                     da.Fill(dt)
                 End Using
             End Using
@@ -356,15 +366,23 @@ Module DataModule
         Dim dt As New DataTable()
         Try
             Using conn As MySqlConnection = GetConnection()
-                Dim sql As String = "SELECT * FROM exercises WHERE (user_id IS NULL OR user_id = @uid) AND name LIKE @search"
+                Dim sql As String
+                If SessionModule.CurrentRole = "admin" Then
+                    sql = "SELECT * FROM exercises WHERE name LIKE @search"
+                Else
+                    sql = "SELECT * FROM exercises WHERE (user_id IS NULL OR user_id = @uid) AND name LIKE @search"
+                End If
+
                 If muscleFilter <> "All" Then
                     sql &= " AND muscle_group = @muscle"
                 End If
                 sql &= " ORDER BY name ASC"
 
                 Using da As New MySqlDataAdapter(sql, conn)
-                    da.SelectCommand.Parameters.AddWithValue("@uid", SessionModule.CurrentUserId)
                     da.SelectCommand.Parameters.AddWithValue("@search", "%" & searchKeyword & "%")
+                    If SessionModule.CurrentRole <> "admin" Then
+                        da.SelectCommand.Parameters.AddWithValue("@uid", SessionModule.CurrentUserId)
+                    End If
                     If muscleFilter <> "All" Then
                         da.SelectCommand.Parameters.AddWithValue("@muscle", muscleFilter)
                     End If
@@ -416,6 +434,158 @@ Module DataModule
                         MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
+    End Function
+
+    Public Function GetUsers() As DataTable
+        Dim dt As New DataTable()
+        Try
+            Using conn As MySqlConnection = GetConnection()
+                Using da As New MySqlDataAdapter("SELECT id, username, password, role, created_at FROM users ORDER BY username ASC", conn)
+                    da.Fill(dt)
+                End Using
+            End Using
+        Catch ex As Exception
+        End Try
+        Return dt
+    End Function
+
+    Public Function AddUser(username As String, password As String, role As String) As Boolean
+        Try
+            Using conn As MySqlConnection = GetConnection()
+                conn.Open()
+                Using cmd As New MySqlCommand("INSERT INTO users (username, password, role) VALUES (@u, @p, @r)", conn)
+                    cmd.Parameters.AddWithValue("@u", username)
+                    cmd.Parameters.AddWithValue("@p", password)
+                    cmd.Parameters.AddWithValue("@r", role)
+                    cmd.ExecuteNonQuery()
+                    Return True
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Gagal menambah user (mungkin username sudah digunakan): " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+
+    Public Function EditUser(id As Integer, username As String, password As String, role As String) As Boolean
+        Try
+            Using conn As MySqlConnection = GetConnection()
+                conn.Open()
+                Using cmd As New MySqlCommand("UPDATE users SET username=@u, password=@p, role=@r WHERE id=@id", conn)
+                    cmd.Parameters.AddWithValue("@u", username)
+                    cmd.Parameters.AddWithValue("@p", password)
+                    cmd.Parameters.AddWithValue("@r", role)
+                    cmd.Parameters.AddWithValue("@id", id)
+                    cmd.ExecuteNonQuery()
+                    Return True
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Gagal mengedit user: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+
+    Public Function DelUser(id As Integer) As Boolean
+        Try
+            Using conn As MySqlConnection = GetConnection()
+                conn.Open()
+                Using cmd As New MySqlCommand("DELETE FROM users WHERE id=@id", conn)
+                    cmd.Parameters.AddWithValue("@id", id)
+                    cmd.ExecuteNonQuery()
+                    Return True
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Gagal menghapus user: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+
+    Public Function FormatDuration(seconds As Integer) As String
+        If seconds >= 3600 Then
+            Dim h As Integer = seconds \ 3600
+            Dim m As Integer = (seconds Mod 3600) \ 60
+            Dim s As Integer = seconds Mod 60
+            Return $"{h}:{m:D2}:{s:D2}"
+        Else
+            Dim m As Integer = seconds \ 60
+            Dim s As Integer = seconds Mod 60
+            Return $"{m}:{s:D2}"
+        End If
+    End Function
+
+    Public Function ParseDuration(txt As String) As Integer
+        txt = txt.Trim()
+
+        ' 1. Jika mengandung titik dua (HH:MM:SS atau MM:SS)
+        If txt.Contains(":") Then
+            Dim parts() As String = txt.Split(":"c)
+            Dim h As Integer = 0
+            Dim m As Integer = 0
+            Dim s As Integer = 0
+
+            If parts.Length >= 3 Then
+                Integer.TryParse(parts(0), h)
+                Integer.TryParse(parts(1), m)
+                Integer.TryParse(parts(2), s)
+                Return (h * 3600) + (m * 60) + s
+            ElseIf parts.Length = 2 Then
+                Integer.TryParse(parts(0), m)
+                Integer.TryParse(parts(1), s)
+                Return (m * 60) + s
+            End If
+
+            ' 2. Jika mengandung koma atau titik (Dianggap desimal menit, misal 12.5 = 12 menit 30 detik)
+        ElseIf txt.Contains(".") OrElse txt.Contains(",") Then
+            Dim m As Decimal = 0
+            If Decimal.TryParse(txt.Replace(",", "."), Globalization.NumberStyles.Any, Globalization.CultureInfo.InvariantCulture, m) Then
+                Return CInt(m * 60)
+            End If
+
+            ' 3. Jika hanya angka biasa tanpa pemisah
+        Else
+            Dim val As Integer = 0
+            If Integer.TryParse(txt, val) Then
+                If txt.Length <= 2 Then
+                    ' Misal: 12 -> 12 menit
+                    Return val * 60
+                ElseIf txt.Length = 3 OrElse txt.Length = 4 Then
+                    ' Misal: 1250 -> 12 menit 50 detik; 945 -> 9 menit 45 detik
+                    Dim m As Integer = val \ 100
+                    Dim s As Integer = val Mod 100
+                    Return (m * 60) + s
+                ElseIf txt.Length = 5 OrElse txt.Length = 6 Then
+                    ' Misal: 11530 -> 1 jam 15 menit 30 detik
+                    Dim h As Integer = val \ 10000
+                    Dim remVal As Integer = val Mod 10000
+                    Dim m As Integer = remVal \ 100
+                    Dim s As Integer = remVal Mod 100
+                    Return (h * 3600) + (m * 60) + s
+                Else
+                    ' Jika terlalu panjang, default ke menit
+                    Return val * 60
+                End If
+            End If
+        End If
+        Return 0
+    End Function
+
+    Public Function IsValidDuration(txt As String) As Boolean
+        txt = txt.Trim()
+        If txt = "" Then Return True
+        If txt.Contains(":") Then
+            Dim parts() As String = txt.Split(":"c)
+            If parts.Length > 3 OrElse parts.Length < 2 Then Return False
+            For Each p In parts
+                Dim val As Integer = 0
+                If Not Integer.TryParse(p, val) OrElse val < 0 Then Return False
+            Next
+            Return True
+        Else
+            Dim val As Decimal = 0
+            Return Decimal.TryParse(txt.Replace(",", "."), Globalization.NumberStyles.Any, Globalization.CultureInfo.InvariantCulture, val) AndAlso val >= 0
+        End If
     End Function
 
 End Module
