@@ -142,8 +142,8 @@ Partial Class Form3
         '
         Me.flpExercises.AutoScroll = True
         Me.flpExercises.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
-        Me.flpExercises.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
-        Me.flpExercises.Location = New System.Drawing.Point(0, 82)
+        Me.flpExercises.CausesValidation = False
+        Me.flpExercises.Location = New System.Drawing.Point(0, 77)
         Me.flpExercises.Name = "flpExercises"
         Me.flpExercises.Padding = New System.Windows.Forms.Padding(12)
         Me.flpExercises.Size = New System.Drawing.Size(940, 589)
