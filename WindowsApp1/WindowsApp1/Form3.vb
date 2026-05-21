@@ -1,4 +1,4 @@
-﻿Imports System.Data
+Imports System.Data
 Imports Guna.UI2.WinForms
 Imports System.Drawing.Printing
 
@@ -60,7 +60,8 @@ Public Class Form3
                         CInt(setRow("set_number")),
                         CDec(setRow("weight")),
                         CInt(setRow("reps")),
-                        CBool(setRow("completed"))
+                        CBool(setRow("completed")),
+                        card.IsCardio
                     )
                     card.AddSetRow(setItem)
                 Next
@@ -200,9 +201,16 @@ Public Class Form3
             g.DrawString(exName & " (" & muscle & ")", fontHeader, brushPrimary, startX + 10, startY + offset + 5)
             offset += 38
 
+            Dim isCardioEx As Boolean = muscle.Trim().Equals("Cardio", StringComparison.OrdinalIgnoreCase)
+
             g.DrawString("SET", fontSub, brushMuted, startX + 20, startY + offset)
-            g.DrawString("WEIGHT (KG)", fontSub, brushMuted, startX + 120, startY + offset)
-            g.DrawString("REPS", fontSub, brushMuted, startX + 260, startY + offset)
+            If isCardioEx Then
+                g.DrawString("DISTANCE (KM)", fontSub, brushMuted, startX + 120, startY + offset)
+                g.DrawString("TIME", fontSub, brushMuted, startX + 260, startY + offset)
+            Else
+                g.DrawString("WEIGHT (KG)", fontSub, brushMuted, startX + 120, startY + offset)
+                g.DrawString("REPS", fontSub, brushMuted, startX + 260, startY + offset)
+            End If
             g.DrawString("STATUS", fontSub, brushMuted, startX + 380, startY + offset)
             offset += 18
 
@@ -213,7 +221,8 @@ Public Class Form3
             For Each setRow As DataRow In dtSets.Rows
                 Dim setNum As String = setRow("set_number").ToString()
                 Dim weight As String = CDec(setRow("weight")).ToString("0.##")
-                Dim reps As String = setRow("reps").ToString()
+                Dim repsVal As Integer = CInt(setRow("reps"))
+                Dim reps As String = If(isCardioEx, DataModule.FormatDuration(repsVal), repsVal.ToString())
                 Dim isDone As Boolean = CBool(setRow("completed"))
 
                 If startY + offset > e.PageBounds.Height - 80 Then

@@ -1,4 +1,4 @@
-﻿Public Class LibraryMasterCMS
+Public Class LibraryMasterCMS
     Private _execId As Integer
     Private _execName As String
     Private _muscleGroup As String
@@ -12,14 +12,26 @@
         _muscleGroup = muscle
         _equipment = equipment
 
-        btnEx.Text = $"{name} ({muscle})"
-
         If IsDBNull(ownerId) Then
-            btnEdit.Visible = False
-            btnDel.Visible = False
+            btnEx.Text = $"{name} ({muscle})"
+            btnEx.BorderThickness = 0
         Else
+            btnEx.Text = $"👤 {name} ({muscle})"
+            btnEx.BorderThickness = 1
+            btnEx.BorderColor = System.Drawing.Color.FromArgb(0, 150, 255)
+        End If
+
+        If SessionModule.CurrentRole = "admin" Then
             btnEdit.Visible = True
             btnDel.Visible = True
+        Else
+            If IsDBNull(ownerId) Then
+                btnEdit.Visible = False
+                btnDel.Visible = False
+            Else
+                btnEdit.Visible = True
+                btnDel.Visible = True
+            End If
         End If
     End Sub
 

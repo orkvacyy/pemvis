@@ -184,6 +184,12 @@
     <Compile Include="FormRegister.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormUserPopup.Designer.vb">
+      <DependentUpon>FormUserPopup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormUserPopup.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="LibraryMasterCMS.Designer.vb">
       <DependentUpon>LibraryMasterCMS.vb</DependentUpon>
     </Compile>
