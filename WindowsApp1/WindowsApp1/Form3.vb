@@ -243,6 +243,16 @@ Public Class Form3
 
         e.HasMorePages = False
     End Sub
+
+    Private Sub Form3_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Try
+            Dim dt As DataTable = DataModule.getWorkoutExercises(_workoutId)
+            If dt IsNot Nothing AndAlso dt.Rows.Count = 0 Then
+                DataModule.delWorkout(_workoutId)
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
     Private Sub Form3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
