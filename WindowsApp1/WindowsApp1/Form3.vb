@@ -67,12 +67,12 @@ Public Class Form3
                 Next
 
                 AddHandler card.RemoveExerciseClicked, Sub(id, nama)
-                                                           If MessageBox.Show($"Hapus '{nama}' dari workout ini?", "Konfirmasi",
-                                                                              MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
-                                                               DataModule.delWorkoutExercise(id)
-                                                               LoadExercises()
-                                                           End If
-                                                       End Sub
+                    If MessageBox.Show($"Hapus '{nama}' dari workout ini?", "Konfirmasi",
+                                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                        DataModule.delWorkoutExercise(id)
+                        LoadExercises()
+                    End If
+                End Sub
 
                 AddHandler card.AddSetClicked, Sub(id)
                                                    DataModule.addSet(id, 0, 0)
@@ -138,20 +138,24 @@ Public Class Form3
         Dim startX As Integer = 60
         Dim startY As Integer = 60
         Dim offset As Integer = 0
+        'Background'    
         Dim pageWidth As Integer = e.PageBounds.Width - 120
+        Dim colorBackground As Color = Color.FromArgb(18, 18, 18)
+        Dim brushBackground As New SolidBrush(colorBackground)
+        g.FillRectangle(brushBackground, e.PageBounds)
 
-        ' Font & Warna (Tetap sama)
+        ' Font & Warna
         Dim fontTitle As New Font("Segoe UI", 16, FontStyle.Bold)
         Dim fontHeader As New Font("Segoe UI", 11, FontStyle.Bold)
         Dim fontSub As New Font("Segoe UI", 9, FontStyle.Regular)
         Dim fontBody As New Font("Segoe UI", 9.5, FontStyle.Regular)
         Dim fontBodyBold As New Font("Segoe UI", 9.5, FontStyle.Bold)
 
-        Dim colorPrimary As Color = Color.FromArgb(59, 130, 246)
-        Dim colorText As Color = Color.FromArgb(31, 41, 55)
-        Dim colorMuted As Color = Color.FromArgb(107, 114, 128)
-        Dim colorBorder As Color = Color.FromArgb(229, 231, 235)
-        Dim colorCardBg As Color = Color.FromArgb(249, 250, 251)
+        Dim colorPrimary As Color = Color.FromArgb(239, 68, 68)
+        Dim colorText As Color = Color.White
+        Dim colorMuted As Color = Color.FromArgb(156, 163, 175)
+        Dim colorBorder As Color = Color.FromArgb(55, 65, 81)
+        Dim colorCardBg As Color = Color.FromArgb(31, 41, 55)
 
         Dim brushPrimary As New SolidBrush(colorPrimary)
         Dim brushText As New SolidBrush(colorText)
@@ -201,16 +205,9 @@ Public Class Form3
             g.DrawString(exName & " (" & muscle & ")", fontHeader, brushPrimary, startX + 10, startY + offset + 5)
             offset += 38
 
-            Dim isCardioEx As Boolean = muscle.Trim().Equals("Cardio", StringComparison.OrdinalIgnoreCase)
-
             g.DrawString("SET", fontSub, brushMuted, startX + 20, startY + offset)
-            If isCardioEx Then
-                g.DrawString("DISTANCE (KM)", fontSub, brushMuted, startX + 120, startY + offset)
-                g.DrawString("TIME", fontSub, brushMuted, startX + 260, startY + offset)
-            Else
-                g.DrawString("WEIGHT (KG)", fontSub, brushMuted, startX + 120, startY + offset)
-                g.DrawString("REPS", fontSub, brushMuted, startX + 260, startY + offset)
-            End If
+            g.DrawString("WEIGHT (KG)", fontSub, brushMuted, startX + 120, startY + offset)
+            g.DrawString("REPS", fontSub, brushMuted, startX + 260, startY + offset)
             g.DrawString("STATUS", fontSub, brushMuted, startX + 380, startY + offset)
             offset += 18
 
@@ -221,8 +218,7 @@ Public Class Form3
             For Each setRow As DataRow In dtSets.Rows
                 Dim setNum As String = setRow("set_number").ToString()
                 Dim weight As String = CDec(setRow("weight")).ToString("0.##")
-                Dim repsVal As Integer = CInt(setRow("reps"))
-                Dim reps As String = If(isCardioEx, DataModule.FormatDuration(repsVal), repsVal.ToString())
+                Dim reps As String = setRow("reps").ToString()
                 Dim isDone As Boolean = CBool(setRow("completed"))
 
                 If startY + offset > e.PageBounds.Height - 80 Then

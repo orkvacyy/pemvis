@@ -56,7 +56,7 @@ Public Class SetRowCMS
                 r = DataModule.ParseDuration(txtR)
             Else
                 Dim isValidReps As Boolean = Integer.TryParse(txtR, r)
-                If Not isValidReps OrElse r < 0 Then
+                If Not isValidReps OrElse r <= 0 Then
                     MessageBox.Show($"Input '{txtR}' tidak valid. Silakan masukkan angka bulat untuk Repetisi.", "Input Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                     r = 0
                     txtReps.Text = "0"
@@ -83,5 +83,9 @@ Public Class SetRowCMS
 
     Private Sub btnDelSet_Click(sender As Object, e As EventArgs) Handles btnDelSet.Click
         RaiseEvent DeleteClicked(_setId)
+    End Sub
+
+    Private Sub SetRowCMS_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class
