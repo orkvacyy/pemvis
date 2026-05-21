@@ -436,6 +436,72 @@ Module DataModule
         End Try
     End Function
 
+    Public Function GetUsers() As DataTable
+        Dim dt As New DataTable()
+        Try
+            Using conn As MySqlConnection = GetConnection()
+                Using da As New MySqlDataAdapter("SELECT id, username, password, role, created_at FROM users ORDER BY username ASC", conn)
+                    da.Fill(dt)
+                End Using
+            End Using
+        Catch ex As Exception
+        End Try
+        Return dt
+    End Function
+
+    Public Function AddUser(username As String, password As String, role As String) As Boolean
+        Try
+            Using conn As MySqlConnection = GetConnection()
+                conn.Open()
+                Using cmd As New MySqlCommand("INSERT INTO users (username, password, role) VALUES (@u, @p, @r)", conn)
+                    cmd.Parameters.AddWithValue("@u", username)
+                    cmd.Parameters.AddWithValue("@p", password)
+                    cmd.Parameters.AddWithValue("@r", role)
+                    cmd.ExecuteNonQuery()
+                    Return True
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Gagal menambah user (mungkin username sudah digunakan): " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+
+    Public Function EditUser(id As Integer, username As String, password As String, role As String) As Boolean
+        Try
+            Using conn As MySqlConnection = GetConnection()
+                conn.Open()
+                Using cmd As New MySqlCommand("UPDATE users SET username=@u, password=@p, role=@r WHERE id=@id", conn)
+                    cmd.Parameters.AddWithValue("@u", username)
+                    cmd.Parameters.AddWithValue("@p", password)
+                    cmd.Parameters.AddWithValue("@r", role)
+                    cmd.Parameters.AddWithValue("@id", id)
+                    cmd.ExecuteNonQuery()
+                    Return True
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Gagal mengedit user: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+
+    Public Function DelUser(id As Integer) As Boolean
+        Try
+            Using conn As MySqlConnection = GetConnection()
+                conn.Open()
+                Using cmd As New MySqlCommand("DELETE FROM users WHERE id=@id", conn)
+                    cmd.Parameters.AddWithValue("@id", id)
+                    cmd.ExecuteNonQuery()
+                    Return True
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Gagal menghapus user: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+
     Public Function FormatDuration(seconds As Integer) As String
         If seconds >= 3600 Then
             Dim h As Integer = seconds \ 3600
